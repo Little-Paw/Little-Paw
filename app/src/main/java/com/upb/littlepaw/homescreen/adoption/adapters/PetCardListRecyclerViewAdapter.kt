@@ -38,7 +38,7 @@ class PetCardListRecyclerViewAdapter(
         (holder.layout.layoutParams as RecyclerView.LayoutParams).bottomMargin = 80
 
         holder.layout.setOnClickListener {
-            println("Clicked on ${pet.name}")
+
         }
     }
 
