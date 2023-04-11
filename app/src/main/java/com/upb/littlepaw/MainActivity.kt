@@ -1,5 +1,6 @@
 package com.upb.littlepaw
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -22,5 +23,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.fragment_container, addPetFragment).commit()
 
 
+        intent = Intent(this, AnimalScreenActivity::class.java)
+        startActivity(intent)
     }
 }
