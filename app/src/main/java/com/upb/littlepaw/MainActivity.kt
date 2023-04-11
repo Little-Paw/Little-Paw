@@ -8,5 +8,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val addPetFragment = AddPetFragment()
+        supportFragmentManager.beginTransaction().add(R.id.fragment_container, addPetFragment).commit()
+
+
     }
 }
