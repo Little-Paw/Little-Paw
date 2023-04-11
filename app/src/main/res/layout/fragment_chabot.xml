@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondary"
+    tools:context=".ChatbotFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="50dp"
+        android:text="Support"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="35dp"
+        android:text="chat"
+        android:textColor="#BDBDBD"
+        android:textSize="16dp"
+        android:textAlignment="center"/>
+
+    <ImageView
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="58dp"
+        android:layout_marginLeft="45dp"
+        android:background="@drawable/online">
+    </ImageView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="761dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_rounded_corners">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/bg_rounded_corners2"></FrameLayout>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="379dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="18dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/bg_rounded_corners3">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/send"
+            app:tint="@color/primary"></ImageButton>
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center|left"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/emoji"
+            >
+
+        </ImageButton>
+    </FrameLayout>
+
+    <ImageButton
+        android:layout_width="45dp"
+        android:layout_height="46dp"
+        android:layout_gravity="top|left"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/menu"
+        app:tint="@color/primary"></ImageButton>
+
+
+</FrameLayout>
