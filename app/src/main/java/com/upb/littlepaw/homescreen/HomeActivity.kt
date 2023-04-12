@@ -1,9 +1,12 @@
 package com.upb.littlepaw.homescreen
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import com.upb.littlepaw.*
 import com.upb.littlepaw.databinding.ActivityHomeBinding
 import com.upb.littlepaw.homescreen.adoption.AdoptionFragment
@@ -18,10 +21,20 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) { //if we do this
     private val profileFragment = ProfileFragment()
     private val chatbotFragment = ChatbotFragment()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        window.statusBarColor = getColor(R.color.white)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            binding.homeActivityLayout.setOnApplyWindowInsetsListener { view, windowInsets ->
+                view.updatePadding(top = windowInsets.getInsets(WindowInsetsCompat.Type.statusBars()).top)
+                windowInsets
+            }
+        }
 
         supportFragmentManager.replaceFragment(binding.fragmentContainerView.id, adoptionFragment)
 

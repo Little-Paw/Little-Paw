@@ -4,15 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
+    tools:context=".homescreen.HomeActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/home_activity_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary"
+        android:background="@color/white"
         tools:context=".homescreen.HomeActivity">
 
 
