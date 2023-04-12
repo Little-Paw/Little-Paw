@@ -8,6 +8,8 @@ enum class PetType {
     OTHER
 }
 
+data class PetTypeIcon(@DrawableRes val icon: Int, val type: PetType, val name: String)
+
 enum class PetGender {
     MALE,
     FEMALE

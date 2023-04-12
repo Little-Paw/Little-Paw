@@ -19,7 +19,7 @@
 
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_container_view"
+            android:id="@+id/pet_card_list_fragment"
             android:name="com.upb.littlepaw.homescreen.adoption.AdoptionFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

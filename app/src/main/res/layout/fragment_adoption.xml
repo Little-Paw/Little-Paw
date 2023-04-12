@@ -99,8 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="35dp"
                 android:inputType="textPersonName"
                 app:boxBackgroundColor="@color/white"
                 app:boxCornerRadiusBottomEnd="20dp"
@@ -108,10 +107,11 @@
                 app:boxCornerRadiusTopEnd="20dp"
                 app:boxCornerRadiusTopStart="20dp"
                 app:boxStrokeColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@+id/fragment_container_view"
+                app:layout_constraintBottom_toTopOf="@+id/select_pet_type_fragment"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
                 app:startIconDrawable="@drawable/ic_search"
                 app:startIconTint="@color/black">
 
@@ -125,13 +125,25 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_container_view"
+                android:id="@+id/select_pet_type_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/pet_card_list_fragment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editText"
+                tools:layout="@layout/fragment_pet_type_list" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/pet_card_list_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText"
+                app:layout_constraintTop_toBottomOf="@+id/select_pet_type_fragment"
                 tools:layout="@layout/fragment_pet_card_list" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
