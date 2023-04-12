@@ -35,8 +35,6 @@ class PetCardListRecyclerViewAdapter(
         holder.genderIconImage.setImageResource(if(pet.gender === PetGender.MALE) R.drawable.ic_male_symbol else R.drawable.ic_female_symbol)
         holder.cardImage.setImageResource(pet.image)
 
-        (holder.layout.layoutParams as RecyclerView.LayoutParams).bottomMargin = 80
-
         holder.layout.setOnClickListener {
 
         }
@@ -47,7 +45,7 @@ class PetCardListRecyclerViewAdapter(
     inner class ViewHolder(binding: FragmentPetCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val layout = binding.root
-        val cardImage: ImageFilterView = binding.imageView
+        val cardImage: ImageView = binding.petImage
         val nameTitleTextView: TextView = binding.nameTitle
         val breedSubtitleTextView: TextView = binding.breedSubtitle
         val ageTextView: TextView = binding.ageText

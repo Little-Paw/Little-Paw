@@ -19,4 +19,5 @@
     <string name="location">Location</string>
     <string name="location_icon">Location icon</string>
     <string name="search_text">Search pet to adopt</string>
+    <string name="pet_image_in_card_item">Pet image in card item</string>
 </resources>

@@ -34,16 +34,16 @@ class PetCardListFragment : Fragment() {
         binding = FragmentPetCardListBinding.bind(view)
 
         val petList = listOf(
-            PetCard("Doki", 15, "test", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "test", PetType.DOG, PetGender.FEMALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "test", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "test", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "test", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "test", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "test", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "test", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "test", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "test", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
+            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
+            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.FEMALE, R.drawable.dog_placeholder, 45),
+            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
+            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
+            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
+            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
+            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
+            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
+            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
+            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
         )
 
         with(binding.list) {
