@@ -1,20 +1,17 @@
 package com.upb.littlepaw.homescreen
 
-import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.fragment.NavHostFragment
 import com.upb.littlepaw.*
 import com.upb.littlepaw.databinding.ActivityHomeBinding
 import com.upb.littlepaw.homescreen.adoption.AdoptionFragment
-import com.upb.littlepaw.utils.replaceFragment
 
-class HomeActivity : AppCompatActivity(R.layout.activity_home) { //if we do this, we don't need to set the content view in the onCreate method
+class HomeActivity : AppCompatActivity() { //if we do this, we don't need to set the content view in the onCreate method
     private lateinit var viewModel: HomeViewModel
     lateinit var binding: ActivityHomeBinding
+    lateinit var drawerLayout:DrawerLayout
 
     private val adoptionFragment = AdoptionFragment()
     private val addPetFragment = AddPetFragment()
@@ -29,7 +26,8 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) { //if we do this
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_home)
+        /*
 
         window.statusBarColor = getColor(R.color.white)
 
@@ -40,13 +38,25 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) { //if we do this
             }
         }
 
-        supportFragmentManager.replaceFragment(binding.petCardListFragment.id, adoptionFragment)
+         */
+        //drawerLayout = binding.drawerLayout
 
-        val actionBarDrawerToggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.nav_open, R.string.nav_close)
-        binding.drawerLayout.addDrawerListener(actionBarDrawerToggle)
+        //val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        //val navController = navHostFragment.navController
+        //binding.navView.setupWithNavController(navController)
+
+        //navController.navigate(R.id.adoptionFragment)
+        //supportFragmentManager.replaceFragment(binding.fragmentHomeContainer.id, adoptionFragment)
+        /*
+        val actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
+        drawerLayout.addDrawerListener(actionBarDrawerToggle)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         actionBarDrawerToggle.syncState()
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+         */
+
+
+        /*
 
         binding.navView.setNavigationItemSelectedListener {
             when(it.itemId) {
@@ -62,6 +72,25 @@ class HomeActivity : AppCompatActivity(R.layout.activity_home) { //if we do this
             binding.drawerLayout.closeDrawers()
             true
         }
+
+         */
     }
+    /*
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        if (id == android.R.id.home) {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            } else {
+                drawerLayout.openDrawer(GravityCompat.START)
+            }
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+     */
 
 }

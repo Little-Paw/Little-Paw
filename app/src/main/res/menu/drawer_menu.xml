@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_adoption"
+        android:id="@+id/adoptionFragment"
         android:title="Adoption" />
 
     <item
-        android:id="@+id/nav_add_pet"
+        android:id="@+id/addPetFragment"
         android:title="Add pet" />
 
     <item
@@ -17,11 +17,11 @@
         android:title="Favorites"/>
 
     <item
-        android:id="@+id/nav_chatbot"
+        android:id="@+id/chatbotFragment"
         android:title="Chat bot"/>
 
     <item
-        android:id="@+id/nav_profile"
+        android:id="@+id/profileFragment"
         android:title="Profile"/>
 
     <item

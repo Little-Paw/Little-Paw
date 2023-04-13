@@ -45,7 +45,7 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
         childFragmentManager.replaceFragment(binding.selectPetTypeFragment.id, selectPetTypeFragment)
 
         binding.menuButton.setOnClickListener {
-            homeBinding.drawerLayout.open()
+            //homeBinding.drawerLayout.open()
         }
     }
 
