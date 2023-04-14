@@ -5,10 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+
+
 import androidx.constraintlayout.utils.widget.ImageFilterView
+import androidx.fragment.app.ListFragment
+import androidx.navigation.findNavController
+import com.google.android.material.card.MaterialCardView
 import com.upb.littlepaw.R
 
 import com.upb.littlepaw.databinding.FragmentPetCardBinding
+import com.upb.littlepaw.homescreen.adoption.AdoptionFragmentDirections
 import com.upb.littlepaw.homescreen.adoption.models.PetCard
 import com.upb.littlepaw.homescreen.adoption.models.PetGender
 
@@ -35,8 +41,11 @@ class PetCardListRecyclerViewAdapter(
         holder.genderIconImage.setImageResource(if(pet.gender === PetGender.MALE) R.drawable.ic_male_symbol else R.drawable.ic_female_symbol)
         holder.cardImage.setImageResource(pet.image)
 
-        holder.layout.setOnClickListener {
-
+        holder.cardImageContainer.setOnClickListener {
+            holder.cardImageContainer.findNavController().navigate(AdoptionFragmentDirections.actionAdoptionFragmentToAnimalScreenFragment(pet))
+        }
+        holder.cardContainer.setOnClickListener{
+            holder.cardImageContainer.findNavController().navigate(AdoptionFragmentDirections.actionAdoptionFragmentToAnimalScreenFragment(pet))
         }
     }
 
@@ -51,6 +60,9 @@ class PetCardListRecyclerViewAdapter(
         val ageTextView: TextView = binding.ageText
         val distanceTextView: TextView = binding.distanceText
         val genderIconImage: ImageView = binding.genderIconImage
+        val cardImageContainer: MaterialCardView = binding.cardImageView
+        val cardContainer:MaterialCardView = binding.cardView
+
 
         override fun toString(): String {
             return super.toString() + " '" + breedSubtitleTextView.text + "'"

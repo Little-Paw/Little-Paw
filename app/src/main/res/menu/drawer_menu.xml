@@ -9,10 +9,6 @@
         android:title="Add pet" />
 
     <item
-        android:id="@+id/animalScreenFragment"
-        android:title="Animal screen" />
-
-    <item
         android:id="@+id/nav_favorites"
         android:title="Favorites"/>
 

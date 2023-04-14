@@ -33,6 +33,12 @@ class PetCardListFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_pet_card_list, container, false)
         binding = FragmentPetCardListBinding.bind(view)
 
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val petList = listOf(
             PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
             PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.FEMALE, R.drawable.dog_placeholder, 45),
@@ -50,6 +56,5 @@ class PetCardListFragment : Fragment() {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = PetCardListRecyclerViewAdapter(petList)
         }
-        return view
     }
 }

@@ -33,7 +33,11 @@
         android:id="@+id/animalScreenFragment"
         android:name="com.upb.littlepaw.AnimalScreenFragment"
         android:label="AnimalScreenFragment"
-        tools:layout="@layout/fragment_animal_screen"/>
+        tools:layout="@layout/fragment_animal_screen">
+        <argument
+            android:name="petCard"
+            app:argType="com.upb.littlepaw.homescreen.adoption.models.PetCard" />
+    </fragment>
 
 
 </navigation>
