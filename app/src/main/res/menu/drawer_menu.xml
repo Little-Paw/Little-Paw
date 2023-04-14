@@ -9,7 +9,7 @@
         android:title="Add pet" />
 
     <item
-        android:id="@+id/nav_animal_screen"
+        android:id="@+id/animalScreenFragment"
         android:title="Animal screen" />
 
     <item

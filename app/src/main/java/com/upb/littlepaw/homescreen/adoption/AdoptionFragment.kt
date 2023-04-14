@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.ActivityHomeBinding
 import com.upb.littlepaw.databinding.FragmentAdoptionBinding
@@ -45,8 +46,9 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
         childFragmentManager.replaceFragment(binding.selectPetTypeFragment.id, selectPetTypeFragment)
 
         binding.menuButton.setOnClickListener {
-            //homeBinding.drawerLayout.open()
+            homeBinding.drawerLayout.open()
         }
+
     }
 
 }

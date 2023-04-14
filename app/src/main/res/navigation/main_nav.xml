@@ -3,13 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/addPetFragment">
+    app:startDestination="@id/adoptionFragment">
 
     <fragment
         android:id="@+id/addPetFragment"
         android:name="com.upb.littlepaw.AddPetFragment"
         android:label="AddPetFragment"
         tools:layout="@layout/fragment_add_pet"/>
+    <fragment
+        android:id="@+id/adoptionFragment"
+        android:name="com.upb.littlepaw.homescreen.adoption.AdoptionFragment"
+        android:label="fragment_adoption"
+        tools:layout="@layout/fragment_adoption" >
+        <action
+            android:id="@+id/action_adoptionFragment_to_animalScreenFragment"
+            app:destination="@id/animalScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatbotFragment"
+        android:name="com.upb.littlepaw.ChatbotFragment"
+        android:label="fragment_chabot"
+        tools:layout="@layout/fragment_chabot" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.upb.littlepaw.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/animalScreenFragment"
+        android:name="com.upb.littlepaw.AnimalScreenFragment"
+        android:label="AnimalScreenFragment"
+        tools:layout="@layout/fragment_animal_screen"/>
 
 
 </navigation>
