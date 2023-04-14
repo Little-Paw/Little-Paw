@@ -20,6 +20,7 @@ class PetTypeListFragment: Fragment() {
     private lateinit var binding: FragmentPetTypeListBinding
     companion object {
         fun newInstance() = PetTypeListFragment()
+        const val TAG = "PetTypeListFragment"
     }
 
     override fun onCreateView(

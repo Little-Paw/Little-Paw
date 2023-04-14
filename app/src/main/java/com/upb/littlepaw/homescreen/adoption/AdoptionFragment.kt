@@ -26,6 +26,7 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
 
     companion object {
         fun newInstance() = AdoptionFragment()
+        const val TAG = "AdoptionFragment"
     }
 
 
@@ -42,8 +43,8 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        childFragmentManager.replaceFragment(binding.petCardListFragment.id, petCardListFragment)
-        childFragmentManager.replaceFragment(binding.selectPetTypeFragment.id, selectPetTypeFragment)
+        childFragmentManager.replaceFragment(binding.petCardListFragment.id, petCardListFragment, false, PetCardListFragment.TAG)
+        childFragmentManager.replaceFragment(binding.selectPetTypeFragment.id, selectPetTypeFragment, false, PetTypeListFragment.TAG)
 
         binding.menuButton.setOnClickListener {
             homeBinding.drawerLayout.open()

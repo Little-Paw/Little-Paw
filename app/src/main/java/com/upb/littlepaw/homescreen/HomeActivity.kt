@@ -13,7 +13,7 @@ import com.upb.littlepaw.*
 import com.upb.littlepaw.databinding.ActivityHomeBinding
 import com.upb.littlepaw.homescreen.adoption.AdoptionFragment
 
-class HomeActivity : AppCompatActivity() { //if we do this, we don't need to set the content view in the onCreate method
+class HomeActivity : AppCompatActivity() {
     private lateinit var viewModel: HomeViewModel
     lateinit var binding: ActivityHomeBinding
 
