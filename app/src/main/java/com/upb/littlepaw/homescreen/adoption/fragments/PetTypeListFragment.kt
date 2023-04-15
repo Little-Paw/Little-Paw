@@ -33,16 +33,10 @@ class PetTypeListFragment: Fragment() {
         val petTypeList = listOf(
             PetTypeIcon(R.drawable.ic_dog, PetType.DOG, "Dogs"),
             PetTypeIcon(R.drawable.ic_cat, PetType.CAT, "Cats"),
-            PetTypeIcon(R.drawable.ic_dog, PetType.DOG, "Dogs"),
-            PetTypeIcon(R.drawable.ic_dog, PetType.DOG, "Dogs"),
-            PetTypeIcon(R.drawable.ic_dog, PetType.DOG, "Dogs"),
-            PetTypeIcon(R.drawable.ic_dog, PetType.DOG, "Dogs"),
-            PetTypeIcon(R.drawable.ic_dog, PetType.DOG, "Dogs"),
-            PetTypeIcon(R.drawable.ic_dog, PetType.DOG, "Dogs"),
-            PetTypeIcon(R.drawable.ic_dog, PetType.DOG, "Dogs"),
-            PetTypeIcon(R.drawable.ic_dog, PetType.DOG, "Dogs"),
-            PetTypeIcon(R.drawable.ic_dog, PetType.DOG, "Dogs"),
-            PetTypeIcon(R.drawable.ic_dog, PetType.DOG, "Dogs"),
+            PetTypeIcon(R.drawable.ic_bunny, PetType.BUNNY, "Bunnies"),
+            PetTypeIcon(R.drawable.ic_bird, PetType.BIRD, "Birds"),
+            PetTypeIcon(R.drawable.ic_reptile, PetType.REPTILE, "Reptiles"),
+            PetTypeIcon(R.drawable.ic_others, PetType.OTHER, "Other"),
         )
 
 

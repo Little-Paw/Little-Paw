@@ -6,6 +6,9 @@ import java.io.Serializable
 enum class PetType {
     DOG,
     CAT,
+    BUNNY,
+    BIRD,
+    REPTILE,
     OTHER
 }
 
