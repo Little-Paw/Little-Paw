@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.PetTypeItemBinding
+import com.upb.littlepaw.homescreen.adoption.AdoptionViewModel
 import com.upb.littlepaw.homescreen.adoption.models.PetTypeIcon
 
-class PetTypeIconRecyclerViewAdapter(private val petTypesList: List<PetTypeIcon>
+class PetTypeIconRecyclerViewAdapter(private val petTypesList: List<PetTypeIcon>, private val adoptionViewModel: AdoptionViewModel
 ) : RecyclerView.Adapter<PetTypeIconRecyclerViewAdapter.ViewHolder>() {
 
     private var selectedItem = 0
@@ -62,6 +63,7 @@ class PetTypeIconRecyclerViewAdapter(private val petTypesList: List<PetTypeIcon>
         override fun onClick(p0: View?) {
             notifyItemChanged(selectedItem)
             selectedItem = bindingAdapterPosition
+            adoptionViewModel.setSelectedPetType(petTypesList[selectedItem].type)
             notifyItemChanged(selectedItem)
             (recyclerView?.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(selectedItem, 0)
         }

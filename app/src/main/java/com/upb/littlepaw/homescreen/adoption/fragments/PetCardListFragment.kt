@@ -2,25 +2,24 @@ package com.upb.littlepaw.homescreen.adoption.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.FragmentPetCardListBinding
-import com.upb.littlepaw.homescreen.adoption.AdoptionFragment
+import com.upb.littlepaw.homescreen.adoption.AdoptionViewModel
 import com.upb.littlepaw.homescreen.adoption.adapters.PetCardListRecyclerViewAdapter
-import com.upb.littlepaw.homescreen.adoption.models.PetCard
-import com.upb.littlepaw.homescreen.adoption.models.PetGender
-import com.upb.littlepaw.homescreen.adoption.models.PetType
 
 class PetCardListFragment : Fragment() {
     lateinit var binding: FragmentPetCardListBinding
 
+    private val adoptionViewModel: AdoptionViewModel by lazy {
+        ViewModelProvider(requireActivity())[AdoptionViewModel::class.java]
+    }
+
     companion object {
-        fun newInstance() = PetCardListFragment()
         const val TAG = "PetCardListFragment"
     }
 
@@ -31,24 +30,18 @@ class PetCardListFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_pet_card_list, container, false)
         binding = FragmentPetCardListBinding.bind(view)
 
-        val petList = listOf(
-            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.FEMALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-            PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 45),
-        )
-
         with(binding.list) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = PetCardListRecyclerViewAdapter(petList)
+            adapter = PetCardListRecyclerViewAdapter(adoptionViewModel.getFilteredPetCardsList())
         }
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        adoptionViewModel.selectedPetType.observe(viewLifecycleOwner) {
+            (binding.list.adapter as PetCardListRecyclerViewAdapter).updatePetCardList(adoptionViewModel.getFilteredPetCardsList(it))
+        }
     }
 }

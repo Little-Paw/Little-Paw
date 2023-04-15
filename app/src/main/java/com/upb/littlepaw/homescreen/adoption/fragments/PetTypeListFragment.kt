@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.FragmentPetCardListBinding
 import com.upb.littlepaw.databinding.FragmentPetTypeListBinding
+import com.upb.littlepaw.homescreen.adoption.AdoptionViewModel
 import com.upb.littlepaw.homescreen.adoption.adapters.PetCardListRecyclerViewAdapter
 import com.upb.littlepaw.homescreen.adoption.adapters.PetTypeIconRecyclerViewAdapter
 import com.upb.littlepaw.homescreen.adoption.models.PetCard
@@ -18,6 +21,10 @@ import com.upb.littlepaw.homescreen.adoption.models.PetTypeIcon
 
 class PetTypeListFragment: Fragment() {
     private lateinit var binding: FragmentPetTypeListBinding
+
+    private val adoptionViewModel: AdoptionViewModel by lazy {
+        ViewModelProvider(requireActivity())[AdoptionViewModel::class.java]
+    }
     companion object {
         fun newInstance() = PetTypeListFragment()
         const val TAG = "PetTypeListFragment"
@@ -42,7 +49,7 @@ class PetTypeListFragment: Fragment() {
 
         with(binding.list) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = PetTypeIconRecyclerViewAdapter(petTypeList)
+            adapter = PetTypeIconRecyclerViewAdapter(petTypeList, adoptionViewModel)
         }
         return view
     }

@@ -1,5 +1,6 @@
 package com.upb.littlepaw.homescreen.adoption.adapters
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,8 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 
 
-import androidx.constraintlayout.utils.widget.ImageFilterView
-import androidx.fragment.app.ListFragment
 import androidx.navigation.findNavController
 import com.google.android.material.card.MaterialCardView
 import com.upb.littlepaw.R
@@ -19,7 +18,7 @@ import com.upb.littlepaw.homescreen.adoption.models.PetCard
 import com.upb.littlepaw.homescreen.adoption.models.PetGender
 
 class PetCardListRecyclerViewAdapter(
-    private val petList: List<PetCard>
+    private var petList: List<PetCard>
 ) : RecyclerView.Adapter<PetCardListRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -47,6 +46,12 @@ class PetCardListRecyclerViewAdapter(
         holder.cardContainer.setOnClickListener{
             holder.cardImageContainer.findNavController().navigate(AdoptionFragmentDirections.actionAdoptionFragmentToAnimalScreenFragment(pet))
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updatePetCardList(petList: List<PetCard>){
+        this.petList = petList
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int = petList.size
