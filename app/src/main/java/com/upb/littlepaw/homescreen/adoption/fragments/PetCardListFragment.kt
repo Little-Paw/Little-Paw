@@ -40,8 +40,10 @@ class PetCardListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adoptionViewModel.selectedPetType.observe(viewLifecycleOwner) {
-            (binding.list.adapter as PetCardListRecyclerViewAdapter).updatePetCardList(adoptionViewModel.getFilteredPetCardsList(it))
+
+        adoptionViewModel.setOnNotifyPetCarListParamsChanged {
+            (binding.list.adapter as PetCardListRecyclerViewAdapter).updatePetCardList(adoptionViewModel.getFilteredPetCardsList())
         }
+
     }
 }

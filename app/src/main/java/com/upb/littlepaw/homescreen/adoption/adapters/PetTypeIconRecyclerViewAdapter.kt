@@ -64,6 +64,7 @@ class PetTypeIconRecyclerViewAdapter(private val petTypesList: List<PetTypeIcon>
             notifyItemChanged(selectedItem)
             selectedItem = bindingAdapterPosition
             adoptionViewModel.setSelectedPetType(petTypesList[selectedItem].type)
+            adoptionViewModel.notifyPetCardListParamsChanged()
             notifyItemChanged(selectedItem)
             (recyclerView?.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(selectedItem, 0)
         }

@@ -12,6 +12,12 @@ class AdoptionViewModel : ViewModel() {
 //    var locationCity: String? = null
 //    var locationCountry: String? = null
 
+    private val petSearchListeners = mutableListOf<(Unit) -> Unit>()
+
+    private val _petSearchQuery = MutableLiveData<String>()
+    val petSearchQuery: LiveData<String>
+        get() = _petSearchQuery
+
     private val _petCardsList = MutableLiveData<List<PetCard>>()
     val petCardsList: LiveData<List<PetCard>>
         get() = _petCardsList
@@ -21,8 +27,21 @@ class AdoptionViewModel : ViewModel() {
         get() = _selectedPetType
 
     init {
+        setPetSearchQuery("")
         setSelectedPetType(PetType.DOG)
         populatePetCardsList()
+    }
+
+    fun setOnNotifyPetCarListParamsChanged(listener: (Unit) -> Unit) {
+        petSearchListeners.add(listener)
+    }
+
+    fun notifyPetCardListParamsChanged() {
+        petSearchListeners.forEach { it.invoke(Unit) }
+    }
+
+    fun setPetSearchQuery(petSearchQuery: String) {
+        _petSearchQuery.value = petSearchQuery
     }
     fun setSelectedPetType(petType: PetType) {
         _selectedPetType.value = petType
@@ -32,7 +51,12 @@ class AdoptionViewModel : ViewModel() {
         _petCardsList.value = petCardsList
     }
 
-    fun populatePetCardsList(){
+    fun getFilteredPetCardsList(): List<PetCard> {
+        return petCardsList.value?.filter { it.type == selectedPetType.value && it.name.contains(
+            petSearchQuery.value.toString(), true) } ?: listOf()
+    }
+
+    private fun populatePetCardsList(){
         setPetCardsList(
             listOf(
                 PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 100),
@@ -69,9 +93,6 @@ class AdoptionViewModel : ViewModel() {
                 PetCard(name = "Perico", age = 1, breed = "Paloma", type = PetType.BIRD, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 10)
             )
         )
-    }
-    fun getFilteredPetCardsList(petType: PetType? = selectedPetType.value): List<PetCard> {
-        return petCardsList.value?.filter { it.type == petType } ?: listOf()
     }
 
 }
