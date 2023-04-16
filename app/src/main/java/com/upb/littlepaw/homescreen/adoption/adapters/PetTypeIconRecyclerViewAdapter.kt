@@ -11,13 +11,15 @@ import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.PetTypeItemBinding
 import com.upb.littlepaw.homescreen.adoption.AdoptionViewModel
 import com.upb.littlepaw.homescreen.adoption.models.PetTypeIcon
+import android.content.Context
+import android.util.DisplayMetrics
 
 class PetTypeIconRecyclerViewAdapter(private val petTypesList: List<PetTypeIcon>, private val adoptionViewModel: AdoptionViewModel
 ) : RecyclerView.Adapter<PetTypeIconRecyclerViewAdapter.ViewHolder>() {
 
     private var selectedItem = 0
     private var recyclerView: RecyclerView? = null
-    private val itemDecorator = ItemDecorator(110)
+    private var itemDecorator: ItemDecorator? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetTypeIconRecyclerViewAdapter.ViewHolder {
         return ViewHolder(
             PetTypeItemBinding.inflate(
@@ -31,7 +33,8 @@ class PetTypeIconRecyclerViewAdapter(private val petTypesList: List<PetTypeIcon>
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         this.recyclerView = recyclerView
-        recyclerView.addItemDecoration(itemDecorator)
+        itemDecorator = ItemDecorator(recyclerView.context, 30)
+        recyclerView.addItemDecoration(itemDecorator!!)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -70,13 +73,16 @@ class PetTypeIconRecyclerViewAdapter(private val petTypesList: List<PetTypeIcon>
         }
     }
 
-    // add a decorator to the recycler view
-    inner class ItemDecorator(private val spaceBetweenItems: Int) : RecyclerView.ItemDecoration() {
+    inner class ItemDecorator(private val context: Context, private val spaceBetweenItemsDP: Int) : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
             super.getItemOffsets(outRect, view, parent, state)
             if (parent.getChildAdapterPosition(view) != state.itemCount - 1) {
-                outRect.right = spaceBetweenItems
+                outRect.right = convertDpToPixel(spaceBetweenItemsDP)
             }
         }
+        private fun convertDpToPixel(dp: Int): Int {
+            return (dp * (context.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)).toInt()
+        }
+
     }
 }

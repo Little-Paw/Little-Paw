@@ -21,6 +21,8 @@ class PetCardListRecyclerViewAdapter(
     private var petList: List<PetCard>
 ) : RecyclerView.Adapter<PetCardListRecyclerViewAdapter.ViewHolder>() {
 
+    private var recyclerView: RecyclerView? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             FragmentPetCardBinding.inflate(
@@ -48,10 +50,16 @@ class PetCardListRecyclerViewAdapter(
         }
     }
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        this.recyclerView = recyclerView
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     fun updatePetCardList(petList: List<PetCard>){
         this.petList = petList
         notifyDataSetChanged()
+        recyclerView?.scheduleLayoutAnimation()
     }
 
     override fun getItemCount(): Int = petList.size

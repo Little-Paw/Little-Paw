@@ -45,8 +45,8 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        childFragmentManager.replaceFragment(binding.petCardListFragment.id, petCardListFragment, false, PetCardListFragment.TAG)
         childFragmentManager.replaceFragment(binding.selectPetTypeFragment.id, selectPetTypeFragment, false, PetTypeListFragment.TAG)
+        childFragmentManager.replaceFragment(binding.petCardListFragment.id, petCardListFragment, false, PetCardListFragment.TAG)
 
         binding.petSearchEditText.addTextChangedListener (object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

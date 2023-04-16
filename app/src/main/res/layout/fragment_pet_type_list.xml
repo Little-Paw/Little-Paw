@@ -7,12 +7,14 @@
     tools:context=".homescreen.adoption.fragments.PetTypeListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list"
-        android:name="com.upb.littlepaw.homescreen.adoption.fragments.PetCardListFragment"
+        android:id="@+id/pet_type_list_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="LinearLayoutManager"
         android:orientation="horizontal"
+        android:paddingHorizontal="6dp"
+        android:clipToPadding="false"
+        android:layoutAnimation="@anim/pet_type_list_anim_layout"
+        app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/pet_type_item" />
 
 </FrameLayout>

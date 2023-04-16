@@ -34,7 +34,7 @@ class PetTypeListFragment: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_pet_card_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_pet_type_list, container, false)
         binding = FragmentPetTypeListBinding.bind(view)
 
         val petTypeList = listOf(
@@ -47,7 +47,7 @@ class PetTypeListFragment: Fragment() {
         )
 
 
-        with(binding.list) {
+        with(binding.petTypeListRv) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = PetTypeIconRecyclerViewAdapter(petTypeList, adoptionViewModel)
         }

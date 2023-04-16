@@ -30,7 +30,7 @@ class PetCardListFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_pet_card_list, container, false)
         binding = FragmentPetCardListBinding.bind(view)
 
-        with(binding.list) {
+        with(binding.petCardListRv) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = PetCardListRecyclerViewAdapter(adoptionViewModel.getFilteredPetCardsList())
         }
@@ -42,7 +42,7 @@ class PetCardListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adoptionViewModel.setOnNotifyPetCarListParamsChanged {
-            (binding.list.adapter as PetCardListRecyclerViewAdapter).updatePetCardList(adoptionViewModel.getFilteredPetCardsList())
+            (binding.petCardListRv.adapter as PetCardListRecyclerViewAdapter).updatePetCardList(adoptionViewModel.getFilteredPetCardsList())
         }
 
     }
