@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="user"
-            type="com.upb.littlepaw.homescreen.profile.models.User"/>
+            name="viewModel"
+            type="com.upb.littlepaw.homescreen.profile.fragments.viewmodels.ProfileViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -75,7 +75,7 @@
             android:ems="10"
             android:fontFamily="@font/roboto"
             android:hint="Email"
-            android:text="@{user.email}"
+            android:text="@={viewModel.user.email}"
             android:inputType="textEmailAddress"
             android:padding="15dp"
             android:textColorHint="#B3B7B7"
@@ -93,7 +93,7 @@
             android:background="@drawable/border"
             android:ems="10"
             android:fontFamily="@font/roboto_medium"
-            android:text="@{user.name}"
+            android:text="@={viewModel.user.name}"
             android:hint="Full Name"
             android:inputType="textPersonName"
             android:padding="15dp"
@@ -112,7 +112,7 @@
             android:layout_marginHorizontal="40dp"
             android:background="@drawable/border"
             android:padding="8dp"
-            app:initialCountry="@{user.country}"
+            app:initialCountry="@={viewModel.user.country}"
             app:layout_constraintBottom_toTopOf="@+id/changePasswordButtonProfile"
             app:layout_constraintEnd_toEndOf="parent"
             app:cp_initialSelectionMode="specificCountry"

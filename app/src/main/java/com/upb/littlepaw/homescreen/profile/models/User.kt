@@ -1,5 +1,6 @@
 package com.upb.littlepaw.homescreen.profile.models
 
-import com.hbb20.countrypicker.models.CPCountry
+import androidx.databinding.BaseObservable
 
-data class User(var name:String, var email:String, var password:String, var country:String)
+data class User(var name:String, var email:String, var password:String, var country:String?)
+
