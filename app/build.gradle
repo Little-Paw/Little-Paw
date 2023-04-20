@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -33,6 +34,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        dataBinding true
         compose true
     }
     composeOptions {
@@ -43,7 +45,6 @@ android {
 dependencies {
 
     def nav_version = "2.5.3"
-
     implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -58,7 +59,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    implementation 'com.hbb20:ccp:2.5.0'
+    implementation 'com.hbb20:android-country-picker:0.0.7'
 
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
