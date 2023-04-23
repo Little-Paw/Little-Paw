@@ -20,4 +20,9 @@
     <string name="location_icon">Location icon</string>
     <string name="search_text">Search pet to adopt</string>
     <string name="pet_image_in_card_item">Pet image in card item</string>
+    <string name="change_password">Change Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New password</string>
+    <string name="repeat_new_password">Repeat new password</string>
+    <string name="save_password">Save Password</string>
 </resources>
