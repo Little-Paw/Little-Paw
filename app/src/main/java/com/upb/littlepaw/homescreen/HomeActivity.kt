@@ -11,9 +11,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.upb.littlepaw.*
 import com.upb.littlepaw.databinding.ActivityHomeBinding
 
+
 class HomeActivity : AppCompatActivity() {
     private lateinit var viewModel: HomeViewModel
     lateinit var binding: ActivityHomeBinding
+
 
     companion object {
         fun newInstance() = HomeActivity()

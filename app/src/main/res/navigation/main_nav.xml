@@ -29,7 +29,7 @@
         tools:layout="@layout/fragment_chabot" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.upb.littlepaw.ProfileFragment"
+        android:name="com.upb.littlepaw.homescreen.profile.fragments.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action

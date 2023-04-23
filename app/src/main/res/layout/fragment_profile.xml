@@ -1,156 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_profile"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.upb.littlepaw.homescreen.profile.fragments.viewmodels.ProfileViewModel"/>
+    </data>
 
-    <TextView
-        android:id="@+id/profileTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/anybody"
-        android:paddingTop="30dp"
-        android:text="Profile"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/round_shape"
-        android:elevation="15dp"
-        android:gravity="center"
-        android:text="Photo +"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileTitle" />
+        <TextView
+            android:id="@+id/profileTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/anybody"
+            android:paddingTop="30dp"
+            android:text="Profile"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextFullNameProfile"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:fontFamily="@font/roboto_medium"
-        android:hint="Full Name"
-        android:inputType="textPersonName"
-        android:padding="15dp"
-        android:textColorHint="#B3B7B7"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEmailAddressProfile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_shape"
+            android:elevation="15dp"
+            android:gravity="center"
+            android:text="Photo +"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profileTitle" />
 
-    <TextView
-        android:id="@+id/fullNameHintTextProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Full Name"
-        android:textColor="@color/secondary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextFullNameProfile"
-        app:layout_constraintStart_toStartOf="@+id/editTextFullNameProfile" />
+        <TextView
+            android:id="@+id/fullNameHintTextProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Full Name"
+            android:textColor="@color/secondary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextFullNameProfile"
+            app:layout_constraintStart_toStartOf="@+id/editTextFullNameProfile" />
 
-    <EditText
-        android:id="@+id/editTextEmailAddressProfile"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:fontFamily="@font/roboto"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="15dp"
-        android:textColorHint="#B3B7B7"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/locationPickerProfile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextFullNameProfile" />
-
-    <TextView
-        android:id="@+id/emailAddressHintTextProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Email"
-        android:textColor="@color/secondary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextEmailAddressProfile"
-        app:layout_constraintStart_toStartOf="@+id/editTextEmailAddressProfile" />
-
-    <com.hbb20.CountryCodePicker
-        android:id="@+id/locationPickerProfile"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:background="@drawable/border"
-        android:padding="8dp"
-        app:ccp_contentColor="#B3B7B7"
-        app:ccp_showFullName="true"
-        app:ccp_showNameCode="false"
-        app:ccp_showPhoneCode="false"
-        app:ccp_textGravity="LEFT"
-        app:ccp_textSize="14sp"
-        app:ccpDialog_backgroundColor="@color/secondary"
-        app:layout_constraintBottom_toTopOf="@+id/changePasswordButtonProfile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressProfile" />
-
-    <TextView
-        android:id="@+id/locationHintTextProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Location"
-        android:textColor="@color/secondary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/locationPickerProfile"
-        app:layout_constraintStart_toStartOf="@+id/locationPickerProfile" />
-
-    <Button
-        android:id="@+id/changePasswordButtonProfile"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:text="CHANGE PASSWORD"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/secondary"
-        app:layout_constraintBottom_toTopOf="@+id/saveButtonProfile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationPickerProfile" />
-
-    <Button
-        android:id="@+id/saveButtonProfile"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/secondary"
-        android:text="SAVE"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changePasswordButtonProfile" />
+        <TextView
+            android:id="@+id/emailAddressHintTextProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Email"
+            android:textColor="@color/secondary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextEmailAddressProfile"
+            app:layout_constraintStart_toStartOf="@+id/editTextEmailAddressProfile" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/editTextEmailAddressProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:fontFamily="@font/roboto"
+            android:hint="Email"
+            android:text="@={viewModel.user.email}"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textColorHint="#B3B7B7"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/locationPickerProfile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextFullNameProfile" />
+
+        <EditText
+            android:id="@+id/editTextFullNameProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@={viewModel.user.name}"
+            android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:textColorHint="#B3B7B7"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextEmailAddressProfile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <com.hbb20.CountryPickerView
+            android:id="@+id/locationPickerProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:background="@drawable/border"
+            android:padding="8dp"
+            app:initialCountry="@={viewModel.user.country}"
+            app:layout_constraintBottom_toTopOf="@+id/changePasswordButtonProfile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:cp_initialSelectionMode="specificCountry"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressProfile" />
+
+        <TextView
+            android:id="@+id/locationHintTextProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Location"
+            android:textColor="@color/secondary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/locationPickerProfile"
+            app:layout_constraintStart_toStartOf="@+id/locationPickerProfile" />
+
+        <Button
+            android:id="@+id/changePasswordButtonProfile"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/secondary"
+            android:text="CHANGE PASSWORD"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/saveButtonProfile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/locationPickerProfile" />
+
+        <Button
+            android:id="@+id/saveButtonProfile"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@{viewModel.buttonEnabled ? @color/secondary : @color/secondary_disabled}"
+            android:enabled="@{viewModel.buttonEnabled}"
+            android:text="SAVE"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/changePasswordButtonProfile"
+            tools:backgroundTint="@color/secondary"/>
+
+        <TextView
+            android:id="@+id/errorFullNameValidation"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:textColor="#FF0000"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="@{viewModel.errorFullName}"
+            app:layout_constraintEnd_toEndOf="@+id/editTextFullNameProfile"
+            app:layout_constraintStart_toStartOf="@+id/editTextFullNameProfile"
+            app:layout_constraintTop_toBottomOf="@+id/editTextFullNameProfile" />
+
+        <TextView
+            android:id="@+id/errorEmailValidation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.errorEmail}"
+            android:textColor="#FF0000"
+            android:textSize="12sp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/editTextEmailAddressProfile"
+            app:layout_constraintStart_toStartOf="@+id/editTextEmailAddressProfile"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressProfile" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
