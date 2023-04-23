@@ -34,12 +34,8 @@ class ProfileFragment: Fragment() {
             println(profileViewModel.user.value?.name?.value?.toString())
             println(profileViewModel.user.value?.email?.value?.toString())
             println(profileViewModel.user.value?.country.toString())
-        }
-
-        binding.saveButtonProfile.setOnClickListener {
             view.findNavController().navigate(R.id.adoptionFragment)
         }
-
         binding.editTextFullNameProfile.setOnFocusChangeListener{ _, hasFocus ->
             if(hasFocus) {
                 profileViewModel.setTouchedFullName(true)
