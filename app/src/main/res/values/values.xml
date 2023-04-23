@@ -15,4 +15,11 @@
         <item name="cornerSizeBottomRight">10dp</item>
         <item name="cornerSizeBottomLeft">10dp</item>
     </style>
+    <style name="Widget.Material3.TextInputLayout.OutlinedBox.CustomStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="shapeAppearance">@style/ShapeAppearance.Material3.Corner.Small</item>
+        <item name="boxStrokeColor">#00000000</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="hintTextColor">@color/white</item>
+        <item name="colorControlActivated">@color/primary</item>
+    </style>
 </resources>
