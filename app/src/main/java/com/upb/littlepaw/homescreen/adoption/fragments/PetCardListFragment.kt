@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.FragmentPetCardListBinding
+import com.upb.littlepaw.homescreen.adoption.AdoptionFragmentDirections
 import com.upb.littlepaw.homescreen.adoption.AdoptionViewModel
 import com.upb.littlepaw.homescreen.adoption.adapters.PetCardListRecyclerViewAdapter
 
@@ -32,7 +34,9 @@ class PetCardListFragment : Fragment() {
 
         with(binding.petCardListRv) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = PetCardListRecyclerViewAdapter(adoptionViewModel.getFilteredPetCardsList())
+            adapter = PetCardListRecyclerViewAdapter(adoptionViewModel.getFilteredPetCardsList()) {
+                findNavController().navigate(AdoptionFragmentDirections.actionAdoptionFragmentToAnimalScreenFragment(it))
+            }
         }
 
         return view

@@ -47,6 +47,18 @@
         android:name="com.upb.littlepaw.changepassscreen.ChangePasswordFragment"
         android:label="ChangePasswordFragment"
         tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.upb.littlepaw.homescreen.favorites.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_animalScreenFragment"
+            app:destination="@id/animalScreenFragment" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
 
 
 </navigation>

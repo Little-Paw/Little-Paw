@@ -18,7 +18,8 @@ import com.upb.littlepaw.homescreen.adoption.models.PetCard
 import com.upb.littlepaw.homescreen.adoption.models.PetGender
 
 class PetCardListRecyclerViewAdapter(
-    private var petList: List<PetCard>
+    private var petList: List<PetCard>,
+    private val onClickPetCard: (PetCard) -> Unit
 ) : RecyclerView.Adapter<PetCardListRecyclerViewAdapter.ViewHolder>() {
 
     private var recyclerView: RecyclerView? = null
@@ -43,10 +44,10 @@ class PetCardListRecyclerViewAdapter(
         holder.cardImage.setImageResource(pet.image)
 
         holder.cardImageContainer.setOnClickListener {
-            holder.cardImageContainer.findNavController().navigate(AdoptionFragmentDirections.actionAdoptionFragmentToAnimalScreenFragment(pet))
+            onClickPetCard(pet)
         }
         holder.cardContainer.setOnClickListener{
-            holder.cardImageContainer.findNavController().navigate(AdoptionFragmentDirections.actionAdoptionFragmentToAnimalScreenFragment(pet))
+            onClickPetCard(pet)
         }
     }
 
