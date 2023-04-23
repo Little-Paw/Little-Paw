@@ -17,7 +17,7 @@ import android.util.DisplayMetrics
 class PetTypeIconRecyclerViewAdapter(private val petTypesList: List<PetTypeIcon>, private val adoptionViewModel: AdoptionViewModel
 ) : RecyclerView.Adapter<PetTypeIconRecyclerViewAdapter.ViewHolder>() {
 
-    private var selectedItem = 0
+    private var selectedItem = petTypesList.indexOfFirst { it.type == adoptionViewModel.getSelectedPetType() }
     private var recyclerView: RecyclerView? = null
     private var itemDecorator: ItemDecorator? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetTypeIconRecyclerViewAdapter.ViewHolder {
@@ -35,6 +35,7 @@ class PetTypeIconRecyclerViewAdapter(private val petTypesList: List<PetTypeIcon>
         this.recyclerView = recyclerView
         itemDecorator = ItemDecorator(recyclerView.context, 30)
         recyclerView.addItemDecoration(itemDecorator!!)
+        (recyclerView.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(selectedItem, 0)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -50,7 +51,7 @@ class PetTypeIconRecyclerViewAdapter(private val petTypesList: List<PetTypeIcon>
             holder.button.iconTint = AppCompatResources.getColorStateList(holder.layout.context, R.color.white)
             holder.button.backgroundTintList = AppCompatResources.getColorStateList(holder.layout.context, R.color.primary)
         } else {
-            holder.button.iconTint = AppCompatResources.getColorStateList(holder.layout.context, R.color.black)
+            holder.button.iconTint = AppCompatResources.getColorStateList(holder.layout.context, R.color.primary)
             holder.button.backgroundTintList = AppCompatResources.getColorStateList(holder.layout.context, R.color.white)
         }
     }
@@ -66,9 +67,11 @@ class PetTypeIconRecyclerViewAdapter(private val petTypesList: List<PetTypeIcon>
         override fun onClick(p0: View?) {
             notifyItemChanged(selectedItem)
             selectedItem = bindingAdapterPosition
-            adoptionViewModel.setSelectedPetType(petTypesList[selectedItem].type)
-            adoptionViewModel.notifyPetCardListParamsChanged()
-            notifyItemChanged(selectedItem)
+            if (petTypesList[selectedItem].type != adoptionViewModel.getSelectedPetType()) {
+                adoptionViewModel.setSelectedPetType(petTypesList[selectedItem].type)
+                adoptionViewModel.notifyPetCardListParamsChanged()
+                notifyItemChanged(selectedItem)
+            }
             (recyclerView?.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(selectedItem, 0)
         }
     }

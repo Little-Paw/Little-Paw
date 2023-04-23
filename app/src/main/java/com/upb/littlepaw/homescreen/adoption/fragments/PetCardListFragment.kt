@@ -1,5 +1,6 @@
 package com.upb.littlepaw.homescreen.adoption.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.FragmentPetCardListBinding
 import com.upb.littlepaw.homescreen.adoption.AdoptionFragmentDirections
@@ -16,6 +18,7 @@ import com.upb.littlepaw.homescreen.adoption.adapters.PetCardListRecyclerViewAda
 
 class PetCardListFragment : Fragment() {
     lateinit var binding: FragmentPetCardListBinding
+    lateinit var recyclerViewPetCardList: RecyclerView
 
     private val adoptionViewModel: AdoptionViewModel by lazy {
         ViewModelProvider(requireActivity())[AdoptionViewModel::class.java]
@@ -37,6 +40,7 @@ class PetCardListFragment : Fragment() {
             adapter = PetCardListRecyclerViewAdapter(adoptionViewModel.getFilteredPetCardsList()) {
                 findNavController().navigate(AdoptionFragmentDirections.actionAdoptionFragmentToAnimalScreenFragment(it))
             }
+            recyclerViewPetCardList = this
         }
 
         return view
@@ -48,6 +52,12 @@ class PetCardListFragment : Fragment() {
         adoptionViewModel.setOnNotifyPetCarListParamsChanged {
             (binding.petCardListRv.adapter as PetCardListRecyclerViewAdapter).updatePetCardList(adoptionViewModel.getFilteredPetCardsList())
         }
+    }
 
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onResume() {
+        super.onResume()
+        recyclerViewPetCardList.scrollToPosition(0)
+        recyclerViewPetCardList.scheduleLayoutAnimation()
     }
 }

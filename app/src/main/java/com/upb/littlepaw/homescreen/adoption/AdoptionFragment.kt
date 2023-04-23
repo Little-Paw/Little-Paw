@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.ActivityHomeBinding
 import com.upb.littlepaw.databinding.FragmentAdoptionBinding
@@ -69,6 +70,10 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
 
         binding.menuButton.setOnClickListener {
             homeBinding.drawerLayout.open()
+        }
+
+        binding.iconButton.setOnClickListener {
+            findNavController().navigate(AdoptionFragmentDirections.actionAdoptionFragmentToProfileFragment())
         }
 
     }

@@ -1,26 +1,24 @@
 package com.upb.littlepaw.homescreen.adoption.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.upb.littlepaw.R
-import com.upb.littlepaw.databinding.FragmentPetCardListBinding
 import com.upb.littlepaw.databinding.FragmentPetTypeListBinding
 import com.upb.littlepaw.homescreen.adoption.AdoptionViewModel
-import com.upb.littlepaw.homescreen.adoption.adapters.PetCardListRecyclerViewAdapter
 import com.upb.littlepaw.homescreen.adoption.adapters.PetTypeIconRecyclerViewAdapter
-import com.upb.littlepaw.homescreen.adoption.models.PetCard
-import com.upb.littlepaw.homescreen.adoption.models.PetGender
 import com.upb.littlepaw.homescreen.adoption.models.PetType
 import com.upb.littlepaw.homescreen.adoption.models.PetTypeIcon
 
 class PetTypeListFragment: Fragment() {
     private lateinit var binding: FragmentPetTypeListBinding
+    private lateinit var recyclerViewPetTypeList: RecyclerView
 
     private val adoptionViewModel: AdoptionViewModel by lazy {
         ViewModelProvider(requireActivity())[AdoptionViewModel::class.java]
@@ -50,7 +48,14 @@ class PetTypeListFragment: Fragment() {
         with(binding.petTypeListRv) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = PetTypeIconRecyclerViewAdapter(petTypeList, adoptionViewModel)
+            recyclerViewPetTypeList = this
         }
         return view
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onResume() {
+        super.onResume()
+        recyclerViewPetTypeList.scheduleLayoutAnimation()
     }
 }

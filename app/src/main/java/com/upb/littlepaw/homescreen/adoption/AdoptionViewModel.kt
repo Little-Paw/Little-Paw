@@ -1,6 +1,5 @@
 package com.upb.littlepaw.homescreen.adoption
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.upb.littlepaw.R
@@ -14,17 +13,11 @@ class AdoptionViewModel : ViewModel() {
 
     private val petSearchListeners = mutableListOf<(Unit) -> Unit>()
 
-    private val _petSearchQuery = MutableLiveData<String>()
-    val petSearchQuery: LiveData<String>
-        get() = _petSearchQuery
+    val petSearchQuery: MutableLiveData<String> = MutableLiveData()
 
-    private val _petCardsList = MutableLiveData<List<PetCard>>()
-    val petCardsList: LiveData<List<PetCard>>
-        get() = _petCardsList
+    val petCardsList: MutableLiveData<List<PetCard>> = MutableLiveData()
 
-    private val _selectedPetType = MutableLiveData<PetType>()
-    val selectedPetType: LiveData<PetType>
-        get() = _selectedPetType
+    val selectedPetType: MutableLiveData<PetType> = MutableLiveData()
 
     init {
         setPetSearchQuery("")
@@ -41,14 +34,18 @@ class AdoptionViewModel : ViewModel() {
     }
 
     fun setPetSearchQuery(petSearchQuery: String) {
-        _petSearchQuery.value = petSearchQuery
+        this.petSearchQuery.value = petSearchQuery
     }
     fun setSelectedPetType(petType: PetType) {
-        _selectedPetType.value = petType
+        this.selectedPetType.value = petType
+    }
+
+    fun getSelectedPetType(): PetType {
+        return selectedPetType.value ?: PetType.DOG
     }
 
     fun setPetCardsList(petCardsList: List<PetCard>) {
-        _petCardsList.value = petCardsList
+        this.petCardsList.value = petCardsList
     }
 
     fun getFilteredPetCardsList(): List<PetCard> {
