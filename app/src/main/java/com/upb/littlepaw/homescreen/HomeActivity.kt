@@ -6,12 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.upb.littlepaw.*
 import com.upb.littlepaw.databinding.ActivityHomeBinding
 import com.upb.littlepaw.homescreen.adoption.AdoptionFragment
+import com.upb.littlepaw.homescreen.addpet.fragments.AddPetFragment
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var viewModel: HomeViewModel

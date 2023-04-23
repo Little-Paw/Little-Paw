@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary"
-    tools:context=".AddPetFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.upb.littlepaw.homescreen.addpet.fragments.viewmodels.AddPetViewModel" />
+        </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_add_pet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary">
 
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/fullNameHintTextAddPet"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/round_shape" />
+        <Button
+            android:id="@+id/myButton"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:text="Add photo +"
+            android:backgroundTint="@color/secondary"
+            android:gravity="center"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/fullNameHintTextAddPet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editTextName"
@@ -35,6 +42,7 @@
         android:padding="15dp"
         android:textColorHint="#B3B7B7"
         android:textSize="14sp"
+        android:text="@={viewModel.pet.name}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,11 +68,12 @@
         android:background="@drawable/border"
         android:ems="10"
         android:fontFamily="@font/roboto"
-        android:hint="Date"
+        android:hint="Birthday"
         android:inputType="date"
         android:padding="15dp"
         android:textColorHint="#B3B7B7"
         android:textSize="14sp"
+        android:text="@={viewModel.pet.birthday}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateHintText" />
@@ -75,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
-        android:text="Date"
+        android:text="Birthday"
         android:textColor="@color/secondary"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextDateAddPet"
@@ -96,6 +105,7 @@
         android:padding="15dp"
         android:textColorHint="#B3B7B7"
         android:textSize="14sp"
+        android:text="@={viewModel.pet.breed}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,6 +137,7 @@
         android:padding="15dp"
         android:textColorHint="#B3B7B7"
         android:textSize="14sp"
+        android:text="@={viewModel.pet.description}"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fullNameHintDescription" />
@@ -175,7 +186,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonMale"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameHintGender" />
+        app:layout_constraintTop_toBottomOf="@+id/fullNameHintGender"/>
+        />
 
     <TextView
         android:id="@+id/fullNameHintGender"
@@ -190,18 +202,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
         app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/textViewAddImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Image +"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <Button
         android:id="@+id/buttonSave"
@@ -229,7 +229,7 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintEnd_toStartOf="@+id/profileButton"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -240,28 +240,32 @@
         android:paddingTop="15dp"
         app:layout_constraintEnd_toStartOf="@+id/textView5"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/menuButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/addpet" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="37dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/menu_icon_foreground" />
+        <Button
+            android:id="@+id/menuButton"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_burguer_menu"
+            app:iconSize="40dp"
+            app:iconTint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="47dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profile_icon_foreground" />
+        <Button
+            android:id="@+id/profileButton"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_profile"
+            app:iconSize="50dp"
+            app:iconTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_profile" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
