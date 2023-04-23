@@ -148,14 +148,40 @@
             android:id="@+id/saveButtonProfile"
             android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/secondary"
+            android:backgroundTint="@{viewModel.buttonEnabled ? @color/secondary : @color/secondary_disabled}"
+            android:enabled="@{viewModel.buttonEnabled}"
             android:text="SAVE"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/changePasswordButtonProfile" />
+            app:layout_constraintTop_toBottomOf="@+id/changePasswordButtonProfile"
+            tools:backgroundTint="@color/secondary"/>
+
+        <TextView
+            android:id="@+id/errorFullNameValidation"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:textColor="#FF0000"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="@{viewModel.errorFullName}"
+            app:layout_constraintEnd_toEndOf="@+id/editTextFullNameProfile"
+            app:layout_constraintStart_toStartOf="@+id/editTextFullNameProfile"
+            app:layout_constraintTop_toBottomOf="@+id/editTextFullNameProfile" />
+
+        <TextView
+            android:id="@+id/errorEmailValidation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.errorEmail}"
+            android:textColor="#FF0000"
+            android:textSize="12sp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/editTextEmailAddressProfile"
+            app:layout_constraintStart_toStartOf="@+id/editTextEmailAddressProfile"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressProfile" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

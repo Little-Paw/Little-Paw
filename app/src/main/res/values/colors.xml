@@ -2,6 +2,8 @@
 <resources>
     <color name="primary">#F7D783</color>
     <color name="secondary">#E0B46C</color>
+    <color name="secondary_disabled">#DFC278</color>
+    <color name="on_secondary_text_disabled">#DFDFDF</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#000000</color>
 </resources>
