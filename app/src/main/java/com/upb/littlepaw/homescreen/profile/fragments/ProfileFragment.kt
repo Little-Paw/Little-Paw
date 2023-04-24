@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.hbb20.countrypicker.config.CPViewConfig
 import com.hbb20.countrypicker.models.CPCountry
 import com.upb.littlepaw.R
@@ -35,6 +36,9 @@ class ProfileFragment: Fragment() {
             println(profileViewModel.user.value?.email?.value?.toString())
             println(profileViewModel.user.value?.country.toString())
             view.findNavController().navigate(R.id.adoptionFragment)
+        }
+        binding.changePasswordButtonProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_changePasswordFragment)
         }
         binding.editTextFullNameProfile.setOnFocusChangeListener{ _, hasFocus ->
             if(hasFocus) {
