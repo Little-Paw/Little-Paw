@@ -1,21 +1,17 @@
-package com.upb.littlepaw
+package com.upb.littlepaw.homescreen.animalscreen
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.navigation.fragment.navArgs
 import com.upb.littlepaw.databinding.FragmentAnimalScreenBinding
-import com.upb.littlepaw.homescreen.adoption.models.PetGender
 
 
 class AnimalScreenFragment : Fragment() {
 
-    val args:AnimalScreenFragmentArgs by navArgs()
+    val args: AnimalScreenFragmentArgs by navArgs()
     lateinit var binding:FragmentAnimalScreenBinding
 
     override fun onCreateView(

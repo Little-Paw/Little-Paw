@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/animalScreenFragment"
-        android:name="com.upb.littlepaw.AnimalScreenFragment"
+        android:name="com.upb.littlepaw.homescreen.animalscreen.AnimalScreenFragment"
         android:label="AnimalScreenFragment"
         tools:layout="@layout/fragment_animal_screen">
         <argument
