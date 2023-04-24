@@ -6,7 +6,7 @@ import com.upb.littlepaw.homescreen.profile.models.User
 import java.util.regex.Pattern
 
 class ProfileViewModel: ViewModel() {
-    val user = MutableLiveData<User>(User(MutableLiveData<String>(), MutableLiveData<String>(), "", ""))
+    val user = MutableLiveData<User>(User(MutableLiveData<String>(), MutableLiveData<String>(), "", MutableLiveData<String?>()))
     val errorFullName = MutableLiveData<String>()
     val errorEmail = MutableLiveData<String>()
     val touchedFullName = MutableLiveData<Boolean>()
@@ -20,6 +20,7 @@ class ProfileViewModel: ViewModel() {
         setName("")
         setEmail("")
         setErrorEmail("")
+        setCountry("")
         setButtonEnabled(false)
     }
 
@@ -29,6 +30,10 @@ class ProfileViewModel: ViewModel() {
 
     fun setEmail(email:String) {
         this.user.value?.email?.value = email
+    }
+
+    fun setCountry(country:String) {
+        this.user.value?.country?.value = country
     }
 
     fun setErrorFullName(errorFullName:String) {
@@ -60,7 +65,7 @@ class ProfileViewModel: ViewModel() {
             true
         } else {
             if(touchedFullName.value!!) {
-                setErrorFullName("Por favor ingrese un nombre válido")
+                setErrorFullName("Please enter a valid name")
             } else {
                 setErrorFullName("")
             }
@@ -76,7 +81,7 @@ class ProfileViewModel: ViewModel() {
             true
         } else {
             if(touchedEmail.value!!) {
-                setErrorEmail("Por favor ingrese un email válido")
+                setErrorEmail("Please enter a valid email")
             } else {
                 setErrorEmail("")
             }
@@ -86,8 +91,8 @@ class ProfileViewModel: ViewModel() {
     }
 
     fun validateAll():Boolean {
-        setButtonEnabled(validateFullName() && validateEmail())
-        return validateFullName() && validateEmail()
+        setButtonEnabled(validateFullName() && validateEmail() && user.value?.country?.value != null)
+        return validateFullName() && validateEmail() && user.value?.country?.value != null
     }
 
 

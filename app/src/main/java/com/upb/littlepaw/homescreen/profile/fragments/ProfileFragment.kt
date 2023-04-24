@@ -33,13 +33,9 @@ class ProfileFragment: Fragment() {
         binding.saveButtonProfile.setOnClickListener {
             println(profileViewModel.user.value?.name?.value?.toString())
             println(profileViewModel.user.value?.email?.value?.toString())
-            println(profileViewModel.user.value?.country.toString())
+            println(profileViewModel.user.value?.country?.value?.toString())
+            //view.findNavController().navigate(R.id.adoptionFragment)
         }
-
-        binding.saveButtonProfile.setOnClickListener {
-            view.findNavController().navigate(R.id.adoptionFragment)
-        }
-
         binding.editTextFullNameProfile.setOnFocusChangeListener{ _, hasFocus ->
             if(hasFocus) {
                 profileViewModel.setTouchedFullName(true)
@@ -59,6 +55,11 @@ class ProfileFragment: Fragment() {
             profileViewModel.validateEmail()
             profileViewModel.validateAll()
         }
+
+        profileViewModel.user.value?.country?.observe(viewLifecycleOwner) {
+            profileViewModel.validateAll()
+        }
+
 
     }
 }
