@@ -56,5 +56,10 @@ class ProfileFragment: Fragment() {
             profileViewModel.validateAll()
         }
 
+        profileViewModel.user.value?.country?.observe(viewLifecycleOwner) {
+            profileViewModel.validateAll()
+        }
+
+
     }
 }
