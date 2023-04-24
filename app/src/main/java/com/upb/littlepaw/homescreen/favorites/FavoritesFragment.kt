@@ -11,12 +11,14 @@ import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.ActivityHomeBinding
 import com.upb.littlepaw.databinding.FragmentFavoritesBinding
 import com.upb.littlepaw.homescreen.HomeActivity
+import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.homescreen.favorites.fragments.PetCardFavListFragment
 import com.upb.littlepaw.utils.replaceFragment
 
 class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     private lateinit var binding: FragmentFavoritesBinding
     private lateinit var homeBinding: ActivityHomeBinding
+    private lateinit var homeViewModel: HomeViewModel
     private val viewModel: FavoritesViewModel by viewModels()
 
     private val petCardFavListFragment = PetCardFavListFragment()
@@ -26,6 +28,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+        homeViewModel = (requireActivity() as HomeActivity).viewModel
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         homeBinding = ActivityHomeBinding.bind((requireActivity() as HomeActivity).binding.root)
@@ -37,7 +40,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         childFragmentManager.replaceFragment(binding.petCardListFragment.id, petCardFavListFragment, false, PetCardFavListFragment.TAG)
 
         binding.menuButton.setOnClickListener {
-            homeBinding.drawerLayout.open()
+            homeViewModel.onClickMenuButton()
         }
 
         binding.profileIconButton.setOnClickListener {

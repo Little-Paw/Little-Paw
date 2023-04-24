@@ -9,11 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.ActivityHomeBinding
 import com.upb.littlepaw.databinding.FragmentAdoptionBinding
 import com.upb.littlepaw.homescreen.HomeActivity
+import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.homescreen.adoption.fragments.PetCardListFragment
 import com.upb.littlepaw.homescreen.adoption.fragments.PetTypeListFragment
 import com.upb.littlepaw.utils.replaceFragment
@@ -26,6 +28,8 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
     private val adoptionViewModel: AdoptionViewModel by lazy {
         ViewModelProvider(requireActivity())[AdoptionViewModel::class.java]
     }
+
+    private lateinit var homeViewModel: HomeViewModel
 
     private val petCardListFragment = PetCardListFragment()
     private val selectPetTypeFragment = PetTypeListFragment()
@@ -42,6 +46,7 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
         val view = inflater.inflate(R.layout.fragment_adoption, container, false)
         binding = FragmentAdoptionBinding.bind(view)
         homeBinding = ActivityHomeBinding.bind((requireActivity() as HomeActivity).binding.root)
+        homeViewModel = (requireActivity() as HomeActivity).viewModel
         return view
     }
 
@@ -69,7 +74,7 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
         }
 
         binding.menuButton.setOnClickListener {
-            homeBinding.drawerLayout.open()
+            homeViewModel.onClickMenuButton()
         }
 
         binding.iconButton.setOnClickListener {
