@@ -7,22 +7,23 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.contains
 import androidx.core.view.forEach
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.card.MaterialCardView
-import com.upb.littlepaw.*
+import com.google.android.material.navigation.NavigationView
+import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.ActivityHomeBinding
-import com.upb.littlepaw.databinding.FragmentSideBarBinding
+import com.upb.littlepaw.homescreen.adoption.AdoptionFragment
 import com.upb.littlepaw.homescreen.fragments.SideBarFragment
 import com.upb.littlepaw.utils.replaceFragment
 
@@ -102,7 +103,7 @@ class HomeActivity : AppCompatActivity() {
                 }
             } else {
                 binding.blockerView.visibility = View.GONE
-                window.statusBarColor = getColor(R.color.white) //TODO: change to current fragment background color
+                window.statusBarColor = getColor(viewModel.getStatusBarColor())
                 AnimatorSet().apply {
                     playTogether(positionAnimationMainFragmentClose, scaleAnimationClose, positionAnimationSideBarFragmentClose)
                     start()
@@ -110,5 +111,19 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
         }
+
+        viewModel.statusBarColor.observe(this) {
+            if (!viewModel.getSideBarOpen()) {
+                window.statusBarColor = getColor(it)
+            }
+        }
+
+//        onBackPressedDispatcher.addCallback(this) {
+//            if (!viewModel.getSideBarOpen() && !containsFragment) { //TODO: check if current fragment is not on the drawer menu
+//                viewModel.setSideBarOpen(true)
+//            } else {
+//                finish()
+//            }
+//        }
     }
 }

@@ -1,5 +1,6 @@
 package com.upb.littlepaw.homescreen.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.upb.littlepaw.LoginActivity
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.FragmentSideBarBinding
 import com.upb.littlepaw.homescreen.HomeViewModel
@@ -39,8 +41,11 @@ class SideBarFragment : Fragment(R.layout.fragment_side_bar) {
         binding.sideBarButtons.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            println(destination.label)
             homeViewModel.setSideBarOpen(false)
+        }
+
+        binding.logOutButton.setOnClickListener {
+            activity?.finish()
         }
     }
 }

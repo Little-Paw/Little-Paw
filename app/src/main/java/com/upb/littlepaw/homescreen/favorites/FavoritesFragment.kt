@@ -45,4 +45,9 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.setStatusBarColor(R.color.white)
+    }
+
 }

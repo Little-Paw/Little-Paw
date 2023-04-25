@@ -87,6 +87,6 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
 
     override fun onResume() {
         super.onResume()
-        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), R.color.white)
+        homeViewModel.setStatusBarColor(R.color.white)
     }
 }

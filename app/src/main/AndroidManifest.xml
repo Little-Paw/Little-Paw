@@ -23,7 +23,8 @@
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".register.RegisterActivity" />
-        <activity android:name=".homescreen.HomeActivity" />
+        <activity android:name=".homescreen.HomeActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

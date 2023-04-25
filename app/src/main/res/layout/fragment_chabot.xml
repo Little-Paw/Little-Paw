@@ -65,6 +65,7 @@
     </FrameLayout>
 
     <ImageButton
+        android:id="@+id/menuButton"
         android:layout_width="45dp"
         android:layout_height="46dp"
         android:layout_gravity="top|left"
