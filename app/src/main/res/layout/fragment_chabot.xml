@@ -38,20 +38,6 @@
     </ImageView>
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="761dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/bg_rounded_corners">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/bg_rounded_corners2"></FrameLayout>
-
-    </FrameLayout>
-
-    <FrameLayout
         android:layout_width="379dp"
         android:layout_height="50dp"
         android:layout_gravity="bottom"
@@ -86,6 +72,8 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/menu"
         app:tint="@color/primary"></ImageButton>
+
+
 
 
 </FrameLayout>
