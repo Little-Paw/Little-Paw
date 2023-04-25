@@ -23,7 +23,6 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.047"
         app:srcCompat="@drawable/paw"
         app:tint="@color/secondary" />
 
@@ -46,18 +45,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
-
+        android:layout_marginTop="52dp"
         android:background="@drawable/border"
         android:ems="10"
         android:fontFamily="@font/roboto_medium"
         android:hint="@string/prompt_password"
-        android:text="@={viewModel.password}"
-        android:textColor="#B7C4C4"
         android:inputType="textPassword"
         android:padding="15dp"
+        android:text="@={viewModel.password}"
+        android:textColor="#B7C4C4"
         android:textColorHint="#B3B7B7"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonLoginScreen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressLogin" />
 

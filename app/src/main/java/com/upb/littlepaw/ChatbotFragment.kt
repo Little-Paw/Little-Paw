@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.upb.littlepaw.databinding.ActivityHomeBinding
 import com.upb.littlepaw.databinding.FragmentChabotBinding
 import com.upb.littlepaw.homescreen.HomeActivity
+import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.utils.replaceFragment
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,6 +32,7 @@ class ChatbotFragment : Fragment() {
     }
     private lateinit var binding: FragmentChabotBinding
     private val viewModel by lazy { ViewModelProvider(this).get(DialogflowViewModel::class.java) }
+    private val homeViewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,12 +45,12 @@ class ChatbotFragment : Fragment() {
         }
 
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        binding.menuButton.setOnClickListener {
-//            .drawerLayout.open()
-//        }
-//    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.menuButton.setOnClickListener {
+            homeViewModel.onClickMenuButton()
+        }
+    }
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
