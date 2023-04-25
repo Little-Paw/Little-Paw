@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-        binding.button.setOnClickListener {
+        binding.buttonLoginScreen.setOnClickListener {
             if(viewModel.validate()){
                 viewModel.login(viewModel.email.value!!, viewModel.password.value!!, {
                     val intent = Intent(this, HomeActivity::class.java)

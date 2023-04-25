@@ -1,267 +1,298 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary"
-    tools:context=".AddPetFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/fullNameHintTextAddPet"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/round_shape" />
+        <import type="android.view.View" />
+        <import type="com.upb.littlepaw.homescreen.adoption.models.PetGender"/>
 
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:fontFamily="@font/roboto"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        android:padding="15dp"
-        android:textColorHint="#B3B7B7"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameHintTextAddPet" />
+        <variable
+            name="viewModel"
+            type="com.upb.littlepaw.homescreen.addpet.fragments.viewmodels.AddPetViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/fullNameHintTextAddPet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:text="Name"
-        android:textColor="@color/secondary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_add_pet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primary">
 
-    <EditText
-        android:id="@+id/editTextDateAddPet"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:fontFamily="@font/roboto"
-        android:hint="Date"
-        android:inputType="date"
-        android:padding="15dp"
-        android:textColorHint="#B3B7B7"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateHintText" />
+        <TextView
+            android:id="@+id/addPhotoButton"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/round_shape"
+            android:elevation="15dp"
+            android:gravity="center"
+            android:text="Add photo +"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/fullNameHintTextAddPet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:layout_constraintVertical_bias="0.0"
+            />
 
-    <TextView
-        android:id="@+id/dateHintText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:text="Date"
-        android:textColor="@color/secondary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextDateAddPet"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName"
-        app:layout_constraintVertical_chainStyle="packed" />
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:fontFamily="@font/roboto"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:text="@={viewModel.pet.name}"
+            android:textColorHint="#B3B7B7"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fullNameHintTextAddPet" />
 
-    <EditText
-        android:id="@+id/editTextBreed"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:fontFamily="@font/roboto"
-        android:hint="Breed"
-        android:inputType="textPersonName"
-        android:padding="15dp"
-        android:textColorHint="#B3B7B7"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameHintBreed" />
+        <TextView
+            android:id="@+id/fullNameHintTextAddPet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:text="Name"
+            android:textColor="@color/secondary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <TextView
-        android:id="@+id/fullNameHintBreed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:text="Breed"
-        android:textColor="@color/secondary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextBreed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDateAddPet" />
+        <EditText
+            android:id="@+id/editTextDateAddPet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:fontFamily="@font/roboto"
+            android:hint="Birthday"
+            android:inputType="date"
+            android:padding="15dp"
+            android:text="@={viewModel.pet.birthday}"
+            android:textColorHint="#B3B7B7"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateHintText" />
 
-    <EditText
-        android:id="@+id/editTextDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:background="@drawable/border"
-        android:ems="10"
-        android:fontFamily="@font/roboto"
-        android:hint="Description"
-        android:inputType="textPersonName"
-        android:padding="15dp"
-        android:textColorHint="#B3B7B7"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameHintDescription" />
+        <TextView
+            android:id="@+id/dateHintText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:text="Birthday"
+            android:textColor="@color/secondary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextDateAddPet"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextName"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <TextView
-        android:id="@+id/fullNameHintDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:text="Description"
-        android:textColor="@color/secondary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextDescription"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBreed"
-        app:layout_constraintVertical_chainStyle="packed" />
+        <EditText
+            android:id="@+id/editTextBreed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:fontFamily="@font/roboto"
+            android:hint="Breed"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:text="@={viewModel.pet.breed}"
+            android:textColorHint="#B3B7B7"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fullNameHintBreed" />
 
-    <Button
-        android:id="@+id/buttonMale"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="31dp"
-        android:backgroundTint="@color/secondary"
-        android:text="Male"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSave"
-        app:layout_constraintEnd_toStartOf="@+id/buttonFemale"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameHintGender" />
+        <TextView
+            android:id="@+id/fullNameHintBreed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:text="Breed"
+            android:textColor="@color/secondary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextBreed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDateAddPet" />
 
-    <Button
-        android:id="@+id/buttonFemale"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="31dp"
-        android:backgroundTint="@color/secondary"
-        android:text="Female"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSave"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonMale"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameHintGender" />
+        <EditText
+            android:id="@+id/editTextDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:fontFamily="@font/roboto"
+            android:hint="Description"
+            android:inputType="textPersonName"
+            android:padding="15dp"
+            android:text="@={viewModel.pet.description}"
+            android:textColorHint="#B3B7B7"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fullNameHintDescription" />
 
-    <TextView
-        android:id="@+id/fullNameHintGender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:text="Gender"
-        android:textColor="@color/secondary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMale"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
-        app:layout_constraintVertical_chainStyle="packed" />
+        <TextView
+            android:id="@+id/fullNameHintDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:text="Description"
+            android:textColor="@color/secondary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextBreed"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <TextView
-        android:id="@+id/textViewAddImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Image +"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        <TextView
+            android:id="@+id/fullNameHintGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:text="Gender"
+            android:textColor="@color/secondary"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/secondary"
-        android:text="Save"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/secondary"
+            android:text="Save"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/anybody"
-        android:paddingTop="20dp"
-        android:text="Add Pet"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/anybody"
+            android:paddingTop="20dp"
+            android:text="Add Pet"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/profileButton"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="40dp"
-        android:layout_height="50dp"
-        android:paddingTop="15dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/addpet" />
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:paddingTop="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/textView5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/menuButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/addpet" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="37dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/menu_icon_foreground" />
+        <Button
+            android:id="@+id/menuButton"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_burguer_menu"
+            app:iconSize="40dp"
+            app:iconTint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="47dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/profile_icon_foreground" />
+        <Button
+            android:id="@+id/profileButton"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_profile"
+            app:iconSize="50dp"
+            app:iconTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_profile" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RadioGroup
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fullNameHintGender"
+            android:orientation="horizontal"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:gravity="center"
+            >
+
+            <RadioButton
+                android:id="@+id/checkBoxMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/checkbox_rounded_corners"
+                android:gravity="center"
+                android:text="Male"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/buttonSave"
+                app:layout_constraintEnd_toStartOf="@+id/checkBoxFemale"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fullNameHintGender"
+                android:checked="@{viewModel.pet.gender.equals(PetGender.MALE)}"
+                android:onClick="@{()->viewModel.changeGender(PetGender.MALE)}"
+                />
+
+            <RadioButton
+                android:id="@+id/checkBoxFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/checkbox_rounded_corners"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Female"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/buttonSave"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/checkBoxMale"
+                app:layout_constraintTop_toBottomOf="@+id/fullNameHintGender"
+                android:checked="@{viewModel.pet.gender.equals(PetGender.FEMALE)}"
+                android:onClick="@{()->viewModel.changeGender(PetGender.FEMALE)}"
+                />
+
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

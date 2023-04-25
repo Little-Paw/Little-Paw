@@ -1,12 +1,18 @@
 package com.upb.littlepaw.homescreen.profile.fragments
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.hbb20.countrypicker.config.CPViewConfig
 import com.hbb20.countrypicker.models.CPCountry
 import com.upb.littlepaw.R
@@ -17,6 +23,16 @@ import com.upb.littlepaw.homescreen.profile.models.User
 class ProfileFragment: Fragment() {
     lateinit var binding: FragmentProfileBinding
     val profileViewModel: ProfileViewModel by viewModels()
+    val fileChooseContract = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        Glide.with(this).load(uri).circleCrop().into(object: CustomTarget<Drawable>() {
+            override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+                binding.uploadImageProfile.background = resource
+            }
+            override fun onLoadCleared(placeholder: Drawable?) {
+            }
+        })
+        }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,6 +51,9 @@ class ProfileFragment: Fragment() {
             println(profileViewModel.user.value?.email?.value?.toString())
             println(profileViewModel.user.value?.country.toString())
             view.findNavController().navigate(R.id.adoptionFragment)
+        }
+        binding.changePasswordButtonProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_changePasswordFragment)
         }
         binding.editTextFullNameProfile.setOnFocusChangeListener{ _, hasFocus ->
             if(hasFocus) {
@@ -58,6 +77,10 @@ class ProfileFragment: Fragment() {
 
         profileViewModel.user.value?.country?.observe(viewLifecycleOwner) {
             profileViewModel.validateAll()
+        }
+
+        binding.uploadImageProfile.setOnClickListener{
+            fileChooseContract.launch("image/*")
         }
 
 

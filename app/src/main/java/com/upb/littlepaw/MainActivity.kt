@@ -2,6 +2,7 @@ package com.upb.littlepaw
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.upb.littlepaw.homescreen.addpet.fragments.AddPetFragment
 import com.upb.littlepaw.homescreen.profile.fragments.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
