@@ -6,7 +6,7 @@ import com.upb.littlepaw.homescreen.profile.models.User
 import java.util.regex.Pattern
 
 class ProfileViewModel: ViewModel() {
-    val user = MutableLiveData<User>(User(MutableLiveData<String>(), MutableLiveData<String>(), "", MutableLiveData<String?>()))
+    val user = MutableLiveData<User>(User(MutableLiveData<String>(), MutableLiveData<String>(), MutableLiveData<String>(), MutableLiveData<String?>()))
     val errorFullName = MutableLiveData<String>()
     val errorEmail = MutableLiveData<String>()
     val touchedFullName = MutableLiveData<Boolean>()

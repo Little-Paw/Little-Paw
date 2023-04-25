@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.upb.littlepaw.register.viewmodels.RegisterViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
-    tools:context=".RegisterActivity">
+    tools:context=".register.RegisterActivity">
 
 
         <TextView
@@ -56,7 +62,7 @@
         android:hint="@string/prompt_name"
         android:inputType="textPersonName"
         android:padding="15dp"
-        android:text=""
+        android:text="@={viewModel.user.name}"
         android:textColorHint="#B3B7B7"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextEmailAddressRegister"
@@ -76,16 +82,16 @@
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:padding="15dp"
-        android:text=""
+        android:text="@={viewModel.user.email}"
         android:textColorHint="#B3B7B7"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPasswordProfile"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPasswordRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextFullNameRegister"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextPasswordProfile"
+        android:id="@+id/editTextPasswordRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
@@ -95,16 +101,16 @@
         android:hint="@string/prompt_password"
         android:inputType="textPassword"
         android:padding="15dp"
-        android:text=""
+        android:text="@={viewModel.user.password}"
         android:textColorHint="#B3B7B7"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressRegister"
-        app:layout_constraintBottom_toTopOf="@+id/editTextRepeatPasswordProfile"
+        app:layout_constraintBottom_toTopOf="@+id/editTextRepeatPasswordRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextRepeatPasswordProfile"
+        android:id="@+id/editTextRepeatPasswordRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
@@ -114,10 +120,10 @@
         android:hint="@string/prompt_repeat_password"
         android:inputType="textPassword"
         android:padding="15dp"
-        android:text=""
+        android:text="@={viewModel.repeatPassword}"
         android:textColorHint="#B3B7B7"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/editTextPasswordProfile"
+        app:layout_constraintTop_toBottomOf="@id/editTextPasswordRegister"
         app:layout_constraintBottom_toTopOf="@+id/locationPickerRegister"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -129,10 +135,11 @@
         android:layout_marginHorizontal="40dp"
         android:background="@drawable/border"
         android:padding="8dp"
-        app:layout_constraintBottom_toTopOf="@id/button5"
+        app:initialCountry="@={viewModel.user.country}"
+        app:layout_constraintBottom_toTopOf="@id/registerButtonRegisterScreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextRepeatPasswordProfile" />
+        app:layout_constraintTop_toBottomOf="@id/editTextRepeatPasswordRegister" />
 
     <TextView
             android:id="@+id/emailHintRegisterScreen"
@@ -155,9 +162,9 @@
             android:textColor="@color/secondary"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/editTextPasswordProfile"
+            app:layout_constraintBottom_toTopOf="@+id/editTextPasswordRegister"
 
-            app:layout_constraintStart_toStartOf="@+id/editTextPasswordProfile" />
+            app:layout_constraintStart_toStartOf="@+id/editTextPasswordRegister" />
 
         <TextView
             android:id="@+id/repeatPasswordHintRegisterScreen"
@@ -167,9 +174,9 @@
             android:textColor="@color/secondary"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/editTextRepeatPasswordProfile"
+            app:layout_constraintBottom_toTopOf="@+id/editTextRepeatPasswordRegister"
 
-            app:layout_constraintStart_toStartOf="@+id/editTextRepeatPasswordProfile" />
+            app:layout_constraintStart_toStartOf="@+id/editTextRepeatPasswordRegister" />
 
         <TextView
             android:id="@+id/locationHintRegisterScreen"
@@ -184,7 +191,7 @@
             app:layout_constraintStart_toStartOf="@+id/locationPickerRegister" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/registerButtonRegisterScreen"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
@@ -199,4 +206,56 @@
         app:layout_constraintTop_toBottomOf="@+id/locationPickerRegister"
         app:layout_constraintVertical_bias="1.0" />
 
+    <TextView
+        android:id="@+id/errorFullNameRegister"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@{viewModel.errorFullName}"
+        app:layout_constraintEnd_toEndOf="@+id/editTextFullNameRegister"
+        app:layout_constraintStart_toStartOf="@+id/editTextFullNameRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTextFullNameRegister" />
+
+    <TextView
+        android:id="@+id/errorEmailRegister"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@{viewModel.errorEmail}"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmailAddressRegister"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmailAddressRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressRegister" />
+
+    <TextView
+        android:id="@+id/errorPasswordRegister"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@{viewModel.errorPassword}"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPasswordRegister"
+        app:layout_constraintStart_toStartOf="@+id/editTextPasswordRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegister" />
+
+    <TextView
+        android:id="@+id/errorRepeatPasswordRegister"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@{viewModel.errorRepeatPassword}"
+        app:layout_constraintEnd_toEndOf="@+id/editTextRepeatPasswordRegister"
+        app:layout_constraintStart_toStartOf="@+id/editTextRepeatPasswordRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRepeatPasswordRegister" />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

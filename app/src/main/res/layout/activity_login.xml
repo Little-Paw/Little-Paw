@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextPasswordRegister"
+        android:id="@+id/editTextPasswordLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
@@ -60,8 +60,8 @@
         android:layout_height="wrap_content"
         android:text="Password"
         android:textColor="@color/secondary"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPasswordRegister"
-        app:layout_constraintStart_toStartOf="@+id/editTextPasswordRegister" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextPasswordLogin"
+        app:layout_constraintStart_toStartOf="@+id/editTextPasswordLogin" />
 
     <TextView
         android:id="@+id/emailHintLoginScreen"
@@ -110,7 +110,7 @@
         android:text=""
         android:textColorHint="#B3B7B7"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/editTextPasswordRegister"
+        app:layout_constraintBottom_toTopOf="@id/editTextPasswordLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appIconLoginScreen"
@@ -127,7 +127,7 @@
         app:layout_constraintBottom_toTopOf="@+id/dividerLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordLogin"
         />
 
     <View
