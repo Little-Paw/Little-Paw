@@ -74,6 +74,9 @@ class AddPetFragment: Fragment() {
         addPhotoButton.setOnClickListener {
             openFileChooser()
         }
+        binding.profileButton.setOnClickListener {
+            findNavController().navigate(AddPetFragmentDirections.actionAddPetFragmentToAdoptionProfile())
+        }
     }
 
 }

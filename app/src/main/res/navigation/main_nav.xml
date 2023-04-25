@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_addPetFragment_to_adoptionFragment"
             app:destination="@id/adoptionFragment" />
+        <action
+            android:id="@+id/action_addPetFragment_to_adoptionProfile"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/adoptionFragment"
