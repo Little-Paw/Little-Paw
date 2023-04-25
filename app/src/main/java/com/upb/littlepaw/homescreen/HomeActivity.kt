@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.forEach
 import androidx.core.view.updatePadding
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.card.MaterialCardView
 import com.upb.littlepaw.*
 import com.upb.littlepaw.databinding.ActivityHomeBinding
 import com.upb.littlepaw.databinding.FragmentSideBarBinding
@@ -50,8 +52,8 @@ class HomeActivity : AppCompatActivity() {
 
 
 
-        val mainFragmentContainer: ViewGroup = findViewById(R.id.nav_host_fragment)
-        val sideBarFragmentContainer: ViewGroup = findViewById(R.id.sidebar_fragment)
+        val mainFragmentContainer: MaterialCardView = binding.mainFragmentContainer
+        val sideBarFragmentContainer: ViewGroup = binding.sidebarFragment
 
         val displayMetrics = resources.displayMetrics
         val screenWidth = displayMetrics.widthPixels
@@ -83,19 +85,28 @@ class HomeActivity : AppCompatActivity() {
             viewModel.setSideBarOpen(!viewModel.getSideBarOpen())
         }
 
+        binding.blockerView.setOnClickListener {
+            if (viewModel.getSideBarOpen()) {
+                viewModel.setSideBarOpen(false)
+            }
+        }
+
         viewModel.sideBarOpen.observe(this) {
-            println("sideBarOpen: $it")
             if (it) {
+                binding.blockerView.visibility = View.VISIBLE
+                mainFragmentContainer.radius = 100f
                 window.statusBarColor = getColor(R.color.secondary)
                 AnimatorSet().apply {
                     playTogether(positionAnimationMainFragmentOpen, scaleAnimationOpen, positionAnimationSideBarFragmentOpen)
                     start()
                 }
             } else {
+                binding.blockerView.visibility = View.GONE
                 window.statusBarColor = getColor(R.color.white) //TODO: change to current fragment background color
                 AnimatorSet().apply {
                     playTogether(positionAnimationMainFragmentClose, scaleAnimationClose, positionAnimationSideBarFragmentClose)
                     start()
+                    doOnEnd { binding.mainFragmentContainer.radius = 0f }
                 }
             }
         }
