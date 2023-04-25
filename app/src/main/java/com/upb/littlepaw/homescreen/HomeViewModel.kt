@@ -14,6 +14,7 @@ class HomeViewModel: ViewModel() {
         setFragmentSelector(FragmentSelector.ADOPTION)
     }
     fun setSideBarOpen(state: Boolean) {
+        if (sideBarOpen.value != null && sideBarOpen.value == state) return
         sideBarOpen.value = state
     }
     fun getSideBarOpen(): Boolean {

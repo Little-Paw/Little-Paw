@@ -39,7 +39,7 @@
             app:itemTextColor="@color/white"
             app:itemIconTint="@color/white"
             app:itemIconSize="30dp"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
             app:menu="@menu/drawer_menu" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton6"
+            android:id="@+id/logOutButton"
             style="@style/Widget.Material3.Button.Icon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

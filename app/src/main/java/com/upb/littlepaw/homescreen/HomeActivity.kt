@@ -81,7 +81,11 @@ class HomeActivity : AppCompatActivity() {
 
         viewModel.onClickMenuButton = {
             viewModel.setSideBarOpen(!viewModel.getSideBarOpen())
-            if (viewModel.getSideBarOpen()) {
+        }
+
+        viewModel.sideBarOpen.observe(this) {
+            println("sideBarOpen: $it")
+            if (it) {
                 window.statusBarColor = getColor(R.color.secondary)
                 AnimatorSet().apply {
                     playTogether(positionAnimationMainFragmentOpen, scaleAnimationOpen, positionAnimationSideBarFragmentOpen)

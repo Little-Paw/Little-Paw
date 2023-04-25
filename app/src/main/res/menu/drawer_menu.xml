@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/adoptionFragment"
         android:icon="@drawable/ic_pet_paw"
@@ -13,16 +14,16 @@
     <item
         android:id="@+id/favoritesFragment"
         android:icon="@drawable/ic_favorite_filled"
-        android:title="Favorites"/>
+        android:title="Favorites" />
 
     <item
         android:id="@+id/chatbotFragment"
         android:icon="@drawable/ic_chat"
-        android:title="Chat bot"/>
+        android:title="Chat bot" />
 
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_person"
-        android:title="Profile"/>
+        android:title="Profile" />
 
 </menu>
