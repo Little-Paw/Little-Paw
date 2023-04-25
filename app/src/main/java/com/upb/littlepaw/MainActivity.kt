@@ -1,9 +1,9 @@
 package com.upb.littlepaw
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import com.upb.littlepaw.homescreen.addpet.fragments.AddPetFragment
+import com.upb.littlepaw.homescreen.profile.fragments.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 

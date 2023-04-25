@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.upb.littlepaw.databinding.ActivityWelcomeBinding
+import com.upb.littlepaw.register.RegisterActivity
 
 class WelcomeActivity : AppCompatActivity() {
 

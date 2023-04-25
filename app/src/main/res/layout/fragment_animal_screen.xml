@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.upb.littlepaw.homescreen.adoption.models.PetGender"/>
+        <variable
+            name="pet"
+            type="com.upb.littlepaw.homescreen.adoption.models.PetCard" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
-
 
     <ImageView
         android:id="@+id/animalImageAnimalScreen"
@@ -16,7 +22,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dog_placeholder" />
+        app:imageResource="@{pet.image}"
+        tools:src="@drawable/dog_placeholder"/>
 
 
     <View
@@ -65,7 +72,6 @@
         android:layout_marginTop="-50dp"
         android:background="@drawable/rounded_corners"
         android:elevation="20dp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,12 +85,13 @@
         android:layout_marginTop="10dp"
         android:elevation="21dp"
         android:fontFamily="@font/anybody"
-        android:text="Smile Doggy"
+        android:text="@{pet.name}"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/descriptionBoxAnimalScreen"
-        app:layout_constraintTop_toTopOf="@+id/descriptionBoxAnimalScreen" />
+        app:layout_constraintTop_toTopOf="@+id/descriptionBoxAnimalScreen"
+        tools:text="Smile Doggy"/>
 
     <TextView
         android:id="@+id/animalBreedAnimalScreen"
@@ -92,12 +99,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:elevation="21dp"
-        android:text="Golden Retriever"
+        android:text="@{pet.breed}"
         android:textColor="#BDBDBD"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/animalLocationAnimalScreen"
         app:layout_constraintStart_toStartOf="@+id/descriptionBoxAnimalScreen"
-        app:layout_constraintTop_toBottomOf="@+id/animalNameAnimalScreen" />
+        app:layout_constraintTop_toBottomOf="@+id/animalNameAnimalScreen"
+        tools:text="Golden Retriever"/>
 
     <TextView
         android:id="@+id/animalLocationAnimalScreen"
@@ -133,8 +141,9 @@
         android:elevation="21dp"
         app:layout_constraintEnd_toEndOf="@+id/descriptionBoxAnimalScreen"
         app:layout_constraintTop_toTopOf="@+id/descriptionBoxAnimalScreen"
-        app:srcCompat="@drawable/ic_male"
-        app:tint="@color/primary" />
+        android:src="@{pet.gender == PetGender.MALE ? @drawable/ic_male : @drawable/ic_female_symbol}"
+        app:tint="@color/primary"
+        tools:src="@drawable/ic_male"/>
 
     <TextView
         android:id="@+id/animalAgeAnimalScreen"
@@ -143,12 +152,13 @@
         android:layout_marginEnd="15dp"
         android:elevation="21dp"
         android:fontFamily="@font/anybody"
-        android:text="4 years old"
+        android:text="@{pet.age + ` years old`}"
         android:textSize="10sp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/animalLocationAnimalScreen"
         app:layout_constraintEnd_toEndOf="@+id/descriptionBoxAnimalScreen"
-        app:layout_constraintTop_toBottomOf="@+id/animalGenderAnimalScreen" />
+        app:layout_constraintTop_toBottomOf="@+id/animalGenderAnimalScreen"
+        tools:text="16 years old"/>
 
     <ImageView
         android:id="@+id/ownerProfilePicAnimalScreen"
@@ -212,3 +222,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

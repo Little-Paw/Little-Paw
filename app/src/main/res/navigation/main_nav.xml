@@ -7,9 +7,13 @@
 
     <fragment
         android:id="@+id/addPetFragment"
-        android:name="com.upb.littlepaw.AddPetFragment"
+        android:name="com.upb.littlepaw.homescreen.addpet.fragments.AddPetFragment"
         android:label="AddPetFragment"
-        tools:layout="@layout/fragment_add_pet"/>
+        tools:layout="@layout/fragment_add_pet">
+        <action
+            android:id="@+id/action_addPetFragment_to_adoptionFragment"
+            app:destination="@id/adoptionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/adoptionFragment"
         android:name="com.upb.littlepaw.homescreen.adoption.AdoptionFragment"
@@ -29,7 +33,7 @@
         tools:layout="@layout/fragment_chabot" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.upb.littlepaw.ProfileFragment"
+        android:name="com.upb.littlepaw.homescreen.profile.fragments.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
@@ -38,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/animalScreenFragment"
-        android:name="com.upb.littlepaw.AnimalScreenFragment"
+        android:name="com.upb.littlepaw.homescreen.animalscreen.AnimalScreenFragment"
         android:label="AnimalScreenFragment"
         tools:layout="@layout/fragment_animal_screen">
         <argument

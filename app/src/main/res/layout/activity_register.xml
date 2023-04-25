@@ -1,191 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.upb.littlepaw.register.viewmodels.RegisterViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
-    tools:context=".RegisterActivity">
+    tools:context=".register.RegisterActivity">
+
+
+        <TextView
+            android:id="@+id/fullNameHintRegisterScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Full name"
+            android:textColor="@color/secondary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextFullNameRegister"
+
+            app:layout_constraintStart_toStartOf="@+id/editTextFullNameRegister" />
+
+        <TextView
+            android:id="@+id/littlePawTitleRegisterScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="LittlePaw"
+            android:textColor="@color/secondary"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/appIconRegisterScreen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/appIconRegisterScreen"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/appIconRegisterScreen"
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintEnd_toStartOf="@+id/littlePawTitleRegisterScreen"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/paw" />
+
+    <EditText
+        android:id="@+id/editTextFullNameRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:fontFamily="@font/roboto_medium"
+        android:hint="@string/prompt_name"
+        android:inputType="textPersonName"
+        android:padding="15dp"
+        android:text="@={viewModel.user.name}"
+        android:textColorHint="#B3B7B7"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmailAddressRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appIconRegisterScreen" />
+
+    <EditText
+        android:id="@+id/editTextEmailAddressRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:fontFamily="@font/roboto_medium"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        android:padding="15dp"
+        android:text="@={viewModel.user.email}"
+        android:textColorHint="#B3B7B7"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPasswordRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextFullNameRegister"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextPasswordRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:fontFamily="@font/roboto_medium"
+        android:hint="@string/prompt_password"
+        android:inputType="textPassword"
+        android:padding="15dp"
+        android:text="@={viewModel.user.password}"
+        android:textColorHint="#B3B7B7"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressRegister"
+        app:layout_constraintBottom_toTopOf="@+id/editTextRepeatPasswordRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextRepeatPasswordRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:background="@drawable/border"
+        android:ems="10"
+        android:fontFamily="@font/roboto_medium"
+        android:hint="@string/prompt_repeat_password"
+        android:inputType="textPassword"
+        android:padding="15dp"
+        android:text="@={viewModel.repeatPassword}"
+        android:textColorHint="#B3B7B7"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/editTextPasswordRegister"
+        app:layout_constraintBottom_toTopOf="@+id/locationPickerRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.hbb20.CountryPickerView
+        android:id="@+id/locationPickerRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:background="@drawable/border"
+        android:padding="8dp"
+        app:initialCountry="@={viewModel.user.country}"
+        app:layout_constraintBottom_toTopOf="@id/registerButtonRegisterScreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextRepeatPasswordRegister" />
+
+    <TextView
+            android:id="@+id/emailHintRegisterScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email address"
+            android:textColor="@color/secondary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextEmailAddressRegister"
+
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toStartOf="@+id/editTextEmailAddressRegister" />
+
+        <TextView
+            android:id="@+id/passwordHintRegisterScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textColor="@color/secondary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextPasswordRegister"
+
+            app:layout_constraintStart_toStartOf="@+id/editTextPasswordRegister" />
+
+        <TextView
+            android:id="@+id/repeatPasswordHintRegisterScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Repeat password"
+            android:textColor="@color/secondary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/editTextRepeatPasswordRegister"
+
+            app:layout_constraintStart_toStartOf="@+id/editTextRepeatPasswordRegister" />
+
+        <TextView
+            android:id="@+id/locationHintRegisterScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textColor="@color/secondary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/locationPickerRegister"
+
+            app:layout_constraintStart_toStartOf="@+id/locationPickerRegister" />
+
+    <Button
+        android:id="@+id/registerButtonRegisterScreen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:text="Register"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:backgroundTint="@{viewModel.buttonEnabled ? @color/secondary : @color/secondary_disabled}"
+        android:enabled="@{viewModel.buttonEnabled}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/locationPickerRegister"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/errorFullNameRegister"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@{viewModel.errorFullName}"
+        app:layout_constraintEnd_toEndOf="@+id/editTextFullNameRegister"
+        app:layout_constraintStart_toStartOf="@+id/editTextFullNameRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTextFullNameRegister" />
+
+    <TextView
+        android:id="@+id/errorEmailRegister"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@{viewModel.errorEmail}"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEmailAddressRegister"
+        app:layout_constraintStart_toStartOf="@+id/editTextEmailAddressRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressRegister" />
+
+    <TextView
+        android:id="@+id/errorPasswordRegister"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@{viewModel.errorPassword}"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPasswordRegister"
+        app:layout_constraintStart_toStartOf="@+id/editTextPasswordRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegister" />
+
+    <TextView
+        android:id="@+id/errorRepeatPasswordRegister"
+        android:layout_width="0dp"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="@{viewModel.errorRepeatPassword}"
+        app:layout_constraintEnd_toEndOf="@+id/editTextRepeatPasswordRegister"
+        app:layout_constraintStart_toStartOf="@+id/editTextRepeatPasswordRegister"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRepeatPasswordRegister" />
 
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Full name"
-                android:textColor="@color/secondary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.182"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="76dp"
-                android:text="LittlePaw"
-                android:textColor="@color/secondary"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.246"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="108dp"
-                android:layout_height="108dp"
-                android:layout_marginStart="64dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.048"
-                app:srcCompat="@drawable/logo"
-                android:tint="@color/secondary"/>
-
-            <EditText
-                android:id="@+id/editTextTextPersonName"
-                android:layout_width="268dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="68dp"
-                android:ems="10"
-                android:hint="@string/prompt_name"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.447"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5" />
-
-            <EditText
-                android:id="@+id/editTextTextEmailAddress9"
-                android:layout_width="268dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="76dp"
-                android:ems="10"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.447"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
-
-            <EditText
-                android:id="@+id/editTextTextPassword2"
-                android:layout_width="268dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="76dp"
-                android:ems="10"
-                android:hint="@string/prompt_password"
-                android:inputType="textPassword"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.447"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress9" />
-
-            <EditText
-                android:id="@+id/editTextTextPassword4"
-                android:layout_width="268dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="76dp"
-                android:ems="10"
-                android:hint="@string/prompt_repeat_password"
-                android:inputType="textPassword"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.447"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
-
-            <EditText
-                android:id="@+id/editTextTextPersonName5"
-                android:layout_width="268dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="76dp"
-                android:ems="10"
-                android:hint="@string/promt_location"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.447"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword4" />
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email address"
-                android:textColor="@color/secondary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress9"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:textColor="@color/secondary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.188"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/textView22"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Repeat password"
-                android:textColor="@color/secondary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.223"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Location"
-                android:textColor="@color/secondary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.177"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="268dp"
-                android:layout_height="42dp"
-                android:text="Register"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:backgroundTint="@color/secondary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
-                app:layout_constraintVertical_bias="0.252" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
