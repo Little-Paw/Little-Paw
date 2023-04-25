@@ -51,18 +51,26 @@ class RegisterActivity : AppCompatActivity() {
 
         registerViewModel.user.value?.name?.observe(this) {
             registerViewModel.validateFullName()
+            registerViewModel.validateAll()
         }
 
         registerViewModel.user.value?.email?.observe(this) {
             registerViewModel.validateEmail()
+            registerViewModel.validateAll()
+        }
+
+        registerViewModel.user.value?.country?.observe(this) {
+            registerViewModel.validateAll()
         }
 
         registerViewModel.user.value?.password?.observe(this) {
             registerViewModel.validateNewPassword()
+            registerViewModel.validateAll()
         }
 
         registerViewModel.repeatPassword.observe(this) {
             registerViewModel.validateRepeatNewPassword()
+            registerViewModel.validateAll()
         }
 
 

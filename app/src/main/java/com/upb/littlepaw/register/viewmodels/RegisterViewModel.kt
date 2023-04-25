@@ -166,5 +166,10 @@ class RegisterViewModel: ViewModel() {
         }
     }
 
+    fun validateAll():Boolean {
+        setButtonEnabled(validateFullName() && validateEmail() && validateNewPassword() && validateRepeatNewPassword() && user.value?.country?.value != null)
+        return validateFullName() && validateEmail() && validateNewPassword() && validateRepeatNewPassword() && user.value?.country?.value != null
+    }
+
 
 }
