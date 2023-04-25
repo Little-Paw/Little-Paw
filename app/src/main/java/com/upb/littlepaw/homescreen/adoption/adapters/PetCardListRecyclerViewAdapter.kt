@@ -60,6 +60,7 @@ class PetCardListRecyclerViewAdapter(
     fun updatePetCardList(petList: List<PetCard>){
         this.petList = petList
         notifyDataSetChanged()
+        recyclerView?.scrollToPosition(0)
         recyclerView?.scheduleLayoutAnimation()
     }
 

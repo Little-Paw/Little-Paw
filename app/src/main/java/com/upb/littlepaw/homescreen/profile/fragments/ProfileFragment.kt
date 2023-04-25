@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -17,12 +18,15 @@ import com.hbb20.countrypicker.config.CPViewConfig
 import com.hbb20.countrypicker.models.CPCountry
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.FragmentProfileBinding
+import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.homescreen.profile.fragments.viewmodels.ProfileViewModel
 import com.upb.littlepaw.homescreen.profile.models.User
 
 class ProfileFragment: Fragment() {
     lateinit var binding: FragmentProfileBinding
     val profileViewModel: ProfileViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by activityViewModels()
+
     val fileChooseContract = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         Glide.with(this).load(uri).circleCrop().into(object: CustomTarget<Drawable>() {
             override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
@@ -84,5 +88,10 @@ class ProfileFragment: Fragment() {
         }
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.setStatusBarColor(R.color.primary)
     }
 }

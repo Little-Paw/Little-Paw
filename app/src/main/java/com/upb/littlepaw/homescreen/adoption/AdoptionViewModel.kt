@@ -62,7 +62,6 @@ class AdoptionViewModel : ViewModel() {
                 PetCard(name = "Max", age = 1, breed = "Golden Retriever", type = PetType.DOG, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 1000),
                 PetCard(name = "Charlie", age = 4, breed = "French Bulldog", type = PetType.DOG, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 750),
                 PetCard(name = "Milo", age = 5, breed = "Maine Coon", type = PetType.CAT, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 300),
-                PetCard(name = "Coco", age = 2, breed = "Rabbit", type = PetType.BUNNY, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 200),
                 PetCard(name = "Rocky", age = 3, breed = "German Shepherd", type = PetType.DOG, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 800),
                 PetCard(name = "Bella", age = 2, breed = "Persian", type = PetType.CAT, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 150),
                 PetCard(name = "Oscar", age = 1, breed = "Dachshund", type = PetType.DOG, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 600),
@@ -73,7 +72,7 @@ class AdoptionViewModel : ViewModel() {
                 PetCard(name = "Mia", age = 4, breed = "Ragdoll", type = PetType.CAT, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 350),
                 PetCard(name = "Ruby", age = 2, breed = "Chihuahua", type = PetType.DOG, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 300),
                 PetCard(name = "Oliver", age = 3, breed = "Russian Blue", type = PetType.CAT, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 200),
-                PetCard(name = "Coco", age = 1, breed = "Holland Lop", type = PetType.BUNNY, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 150),
+                PetCard(name = "Sirpancho", age = 1, breed = "Holland Lop", type = PetType.BUNNY, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 150),
                 PetCard(name = "Max", age = 4, breed = "Labrador Retriever", type = PetType.DOG, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 400),
                 PetCard(name = "Sasha", age = 3, breed = "Siamese", type = PetType.CAT, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 250),
                 PetCard(name = "Rocky", age = 2, breed = "Pug", type = PetType.DOG, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 800),
@@ -86,8 +85,21 @@ class AdoptionViewModel : ViewModel() {
                 PetCard(name = "Lily", age = 4, breed = "Persian", type = PetType.CAT, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 350),
                 PetCard(name = "Charlie", age = 3, breed = "Chihuahua", type = PetType.DOG, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 300),
                 PetCard(name = "Oscar", age = 2, breed = "Maine Coon", type = PetType.CAT, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 200),
-                PetCard(name = "Coco", age = 1, breed = "Rabbit", type = PetType.BUNNY, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 230),
-                PetCard(name = "Perico", age = 1, breed = "Paloma", type = PetType.BIRD, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 10)
+                PetCard(name = "ByRabbit", age = 1, breed = "Rabbit", type = PetType.BUNNY, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 230),
+                PetCard(name = "Coco", age = 2, breed = "Rabbit", type = PetType.BUNNY, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 200),
+                PetCard(name = "Pixie", age = 1, breed = "Perico", type = PetType.BIRD, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 10),
+                PetCard(name = "Pixie", age = 1, breed = "Perico", type = PetType.BIRD, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 10),
+                PetCard(name = "Perico", age = 1, breed = "Paloma", type = PetType.BIRD, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 10),
+                PetCard(name = "Pixie", age = 1, breed = "Perico", type = PetType.BIRD, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 10),
+                PetCard(name = "Oliver", age = 3, breed = "Russian Blue", type = PetType.REPTILE, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 200),
+                PetCard(name = "Coco", age = 1, breed = "Holland Lop", type = PetType.REPTILE, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 150),
+                PetCard(name = "Max", age = 4, breed = "Labrador Retriever", type = PetType.REPTILE, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 400),
+                PetCard(name = "Sasha", age = 3, breed = "Siamese", type = PetType.REPTILE, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 250),
+                PetCard(name = "Lucy", age = 4, breed = "Beagle", type = PetType.OTHER, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 400),
+                PetCard(name = "Leo", age = 3, breed = "Sphynx", type = PetType.OTHER, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 100),
+                PetCard(name = "Simba", age = 2, breed = "Bengal", type = PetType.OTHER, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 900),
+                PetCard(name = "Teddy", age = 1, breed = "Labradoodle", type = PetType.OTHER, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 550),
+
             )
         )
     }

@@ -5,14 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.FragmentAnimalScreenBinding
+import com.upb.littlepaw.homescreen.HomeViewModel
 
 
 class AnimalScreenFragment : Fragment() {
 
     val args: AnimalScreenFragmentArgs by navArgs()
     lateinit var binding:FragmentAnimalScreenBinding
+    private val homeViewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +29,11 @@ class AnimalScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.pet = args.petCard
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.setStatusBarColor(R.color.white) //TODO: change to transparent
     }
 
 }

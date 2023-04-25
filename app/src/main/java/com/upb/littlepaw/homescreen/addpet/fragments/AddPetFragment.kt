@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -17,13 +18,14 @@ import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.ActivityHomeBinding
 import com.upb.littlepaw.databinding.FragmentAddPetBinding
 import com.upb.littlepaw.homescreen.HomeActivity
+import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.homescreen.addpet.fragments.viewmodels.AddPetViewModel
 
 
 class AddPetFragment: Fragment() {
     private lateinit var binding: FragmentAddPetBinding
-    private lateinit var homeBinding: ActivityHomeBinding
     private val addPetViewModel: AddPetViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by activityViewModels()
 
     val fileChooserContract = registerForActivityResult(ActivityResultContracts.GetContent()) { imageUri ->
         if (imageUri != null) {
@@ -54,7 +56,6 @@ class AddPetFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddPetBinding.inflate(inflater, container, false)
-        homeBinding = ActivityHomeBinding.bind((requireActivity() as HomeActivity).binding.root)
         binding.viewModel = addPetViewModel
 
         return binding.root
@@ -68,12 +69,17 @@ class AddPetFragment: Fragment() {
             findNavController().navigate(action)
         }
         binding.menuButton.setOnClickListener{
-            homeBinding.drawerLayout.open()
+            homeViewModel.onClickMenuButton()
         }
         val addPhotoButton = binding.addPhotoButton
         addPhotoButton.setOnClickListener {
             openFileChooser()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.setStatusBarColor(R.color.primary)
     }
 
 }
