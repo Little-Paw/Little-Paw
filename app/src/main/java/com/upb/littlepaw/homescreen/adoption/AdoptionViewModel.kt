@@ -1,17 +1,26 @@
 package com.upb.littlepaw.homescreen.adoption
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.upb.littlepaw.R
+import com.upb.littlepaw.data.repositories.PetsRepository
 import com.upb.littlepaw.homescreen.adoption.models.PetCard
 import com.upb.littlepaw.homescreen.adoption.models.PetGender
 import com.upb.littlepaw.homescreen.adoption.models.PetType
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 
 class AdoptionViewModel : ViewModel() {
 //    var locationCity: String? = null
 //    var locationCountry: String? = null
 
     private val petSearchListeners = mutableListOf<(Unit) -> Unit>()
+
+    val petsRepository = PetsRepository()
 
     val petSearchQuery: MutableLiveData<String> = MutableLiveData()
 
@@ -22,7 +31,7 @@ class AdoptionViewModel : ViewModel() {
     init {
         setPetSearchQuery("")
         setSelectedPetType(PetType.DOG)
-        populatePetCardsList()
+        //populatePetCardsList()
     }
 
     fun setOnNotifyPetCarListParamsChanged(listener: (Unit) -> Unit) {
@@ -53,10 +62,28 @@ class AdoptionViewModel : ViewModel() {
             petSearchQuery.value.toString(), true) } ?: listOf()
     }
 
+    fun getPetsList(context: Context, onError: () -> Unit) {
+        viewModelScope.launch {
+            petsRepository.getPetsList(context).catch { e ->
+                onError()
+                println(e.toString())
+            }.flowOn(Dispatchers.IO).collect{
+                println(it.toString())
+                petCardsList.value = it
+
+            }
+        }
+        viewModelScope.launch(Dispatchers.IO) {
+            petsRepository.updatePetsList(context)
+        }
+
+    }
+
     private fun populatePetCardsList(){
         setPetCardsList(
             listOf(
-                PetCard("Doki", 15, "Husky", PetType.DOG, PetGender.MALE, R.drawable.dog_placeholder, 100),
+                PetCard(id=1,"Doki", 15, "Husky", PetType.DOG, PetGender.MALE, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Golden_Retriever_standing_Tucker.jpg/220px-Golden_Retriever_standing_Tucker.jpg", 100),
+                /*
                 PetCard(name = "Buddy", age = 3, breed = "Labrador Retriever", type = PetType.DOG, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 500),
                 PetCard(name = "Luna", age = 2, breed = "Siamese", type = PetType.CAT, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 250),
                 PetCard(name = "Max", age = 1, breed = "Golden Retriever", type = PetType.DOG, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 1000),
@@ -99,7 +126,7 @@ class AdoptionViewModel : ViewModel() {
                 PetCard(name = "Leo", age = 3, breed = "Sphynx", type = PetType.OTHER, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 100),
                 PetCard(name = "Simba", age = 2, breed = "Bengal", type = PetType.OTHER, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 900),
                 PetCard(name = "Teddy", age = 1, breed = "Labradoodle", type = PetType.OTHER, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 550),
-
+*/
             )
         )
     }

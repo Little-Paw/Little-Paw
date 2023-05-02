@@ -23,7 +23,8 @@ class FavoritesViewModel : ViewModel() {
 
     fun populatePetCardFavList(){
         setPetCardFavsList(listOf(
-            PetCard(name = "Buddy", age = 3, breed = "Labrador Retriever", type = PetType.DOG, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 500),
+            PetCard(id=1,name = "Buddy", age = 3, breed = "Labrador Retriever", type = PetType.DOG, gender = PetGender.MALE, image = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Golden_Retriever_standing_Tucker.jpg/220px-Golden_Retriever_standing_Tucker.jpg", distanceMeters = 500),
+            /*
             PetCard(name = "Luna", age = 2, breed = "Siamese", type = PetType.CAT, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 250),
             PetCard(name = "Milo", age = 5, breed = "Maine Coon", type = PetType.CAT, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 300),
             PetCard(name = "Coco", age = 2, breed = "Rabbit", type = PetType.BUNNY, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 200),
@@ -35,6 +36,8 @@ class FavoritesViewModel : ViewModel() {
             PetCard(name = "Oscar", age = 2, breed = "Maine Coon", type = PetType.CAT, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 200),
             PetCard(name = "Coco", age = 1, breed = "Rabbit", type = PetType.BUNNY, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 230),
             PetCard(name = "Perico", age = 1, breed = "Paloma", type = PetType.BIRD, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 10)
+
+             */
         ))
     }
 }

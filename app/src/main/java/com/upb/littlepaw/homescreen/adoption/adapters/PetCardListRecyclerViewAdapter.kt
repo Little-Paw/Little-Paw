@@ -9,6 +9,7 @@ import android.widget.TextView
 
 
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.card.MaterialCardView
 import com.upb.littlepaw.R
 
@@ -41,8 +42,8 @@ class PetCardListRecyclerViewAdapter(
         holder.ageTextView.text = pet.age.toString() + " years old"
         holder.distanceTextView.text = "Distance: " + pet.distanceMeters.toString() + " km"
         holder.genderIconImage.setImageResource(if(pet.gender === PetGender.MALE) R.drawable.ic_male_symbol else R.drawable.ic_female_symbol)
-        holder.cardImage.setImageResource(pet.image)
-
+        //holder.cardImage.setImageResource(pet.image)
+        Glide.with(holder.itemView).load(pet.image).into(holder.cardImage)
         holder.cardImageContainer.setOnClickListener {
             onClickPetCard(pet)
         }
