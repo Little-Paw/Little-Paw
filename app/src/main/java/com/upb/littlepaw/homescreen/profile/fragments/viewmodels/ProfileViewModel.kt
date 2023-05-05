@@ -1,7 +1,9 @@
 package com.upb.littlepaw.homescreen.profile.fragments.viewmodels
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.upb.littlepaw.data.repositories.UsersRepository
 import com.upb.littlepaw.homescreen.profile.models.User
 import java.util.regex.Pattern
 
@@ -12,6 +14,7 @@ class ProfileViewModel: ViewModel() {
     val touchedFullName = MutableLiveData<Boolean>()
     val touchedEmail = MutableLiveData<Boolean>()
     val buttonEnabled = MutableLiveData<Boolean>()
+    val usersRepository = UsersRepository()
 
     init {
         setTouchedFullName(false)
@@ -23,6 +26,16 @@ class ProfileViewModel: ViewModel() {
         setCountry("")
         setButtonEnabled(false)
     }
+
+    suspend fun initializeUser(context: Context){
+        val userEntity = usersRepository.getLoggedUser(context)
+        if(userEntity != null) {
+            setName(userEntity.name)
+            setEmail(userEntity.email)
+            setCountry(userEntity.country)
+        }
+    }
+
 
     fun setName(name:String) {
         this.user.value?.name?.value = name

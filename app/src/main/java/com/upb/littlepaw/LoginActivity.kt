@@ -26,8 +26,21 @@ class LoginActivity : AppCompatActivity() {
 
 
         binding.buttonLoginScreen.setOnClickListener {
+            /*
             if(viewModel.validate()){
                 viewModel.login(viewModel.email.value!!, viewModel.password.value!!, {
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                }, { error ->
+                    Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+                })
+            } else {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            }
+
+             */
+            if(viewModel.validate()) {
+                viewModel.loginUser(this, viewModel.email.value!!, viewModel.password.value!!, {
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                 }, { error ->

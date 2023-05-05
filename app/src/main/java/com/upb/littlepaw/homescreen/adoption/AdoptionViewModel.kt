@@ -6,10 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.upb.littlepaw.R
 import com.upb.littlepaw.data.repositories.PetsRepository
+import com.upb.littlepaw.data.repositories.UsersRepository
 import com.upb.littlepaw.homescreen.adoption.models.PetCard
 import com.upb.littlepaw.homescreen.adoption.models.PetGender
 import com.upb.littlepaw.homescreen.adoption.models.PetType
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
@@ -21,6 +23,7 @@ class AdoptionViewModel : ViewModel() {
     private val petSearchListeners = mutableListOf<(Unit) -> Unit>()
 
     val petsRepository = PetsRepository()
+    val usersRepository = UsersRepository()
 
     val petSearchQuery: MutableLiveData<String> = MutableLiveData()
 
@@ -70,6 +73,7 @@ class AdoptionViewModel : ViewModel() {
             }.flowOn(Dispatchers.IO).collect{
                 println(it.toString())
                 petCardsList.value = it
+                getFilteredPetCardsList()
 
             }
         }
@@ -77,6 +81,14 @@ class AdoptionViewModel : ViewModel() {
             petsRepository.updatePetsList(context)
         }
 
+    }
+
+    suspend fun isUserLoggedIn(context: Context): Boolean {
+        return usersRepository.isLoggedIn(context)
+    }
+
+    fun logout(context:Context): Flow<Unit> {
+        return usersRepository.logout(context)
     }
 
     private fun populatePetCardsList(){

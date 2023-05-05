@@ -1,9 +1,13 @@
 package com.upb.littlepaw.register
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.upb.littlepaw.databinding.ActivityRegisterBinding
+import com.upb.littlepaw.homescreen.profile.models.User
+import com.upb.littlepaw.homescreen.profile.models.UserEntity
 import com.upb.littlepaw.register.viewmodels.RegisterViewModel
 
 class RegisterActivity : AppCompatActivity() {
@@ -23,6 +27,9 @@ class RegisterActivity : AppCompatActivity() {
             println(registerViewModel.user.value?.country?.value?.toString())
             println(registerViewModel.user.value?.password?.value?.toString())
             println(registerViewModel.repeatPassword.value?.toString())
+            val user = UserEntity(registerViewModel.user.value!!)
+            registerViewModel.createUser(this,user, { },
+                {Toast.makeText(this, "Error creando usuario", Toast.LENGTH_SHORT).show()})
         }
 
         binding.editTextFullNameRegister.setOnFocusChangeListener{ _, hasFocus ->

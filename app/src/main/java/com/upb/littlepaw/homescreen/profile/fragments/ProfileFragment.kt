@@ -21,6 +21,9 @@ import com.upb.littlepaw.databinding.FragmentProfileBinding
 import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.homescreen.profile.fragments.viewmodels.ProfileViewModel
 import com.upb.littlepaw.homescreen.profile.models.User
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ProfileFragment: Fragment() {
     lateinit var binding: FragmentProfileBinding
@@ -50,6 +53,9 @@ class ProfileFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = profileViewModel
+        CoroutineScope(Dispatchers.Main).launch {
+            profileViewModel.initializeUser(requireContext())
+        }
         binding.saveButtonProfile.setOnClickListener {
             println(profileViewModel.user.value?.name?.value?.toString())
             println(profileViewModel.user.value?.email?.value?.toString())

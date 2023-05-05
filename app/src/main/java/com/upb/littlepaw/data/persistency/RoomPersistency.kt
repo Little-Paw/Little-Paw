@@ -1,30 +1,28 @@
 package com.upb.littlepaw.data.persistency
 
 import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.upb.littlepaw.homescreen.adoption.models.PetCard
 import com.upb.littlepaw.homescreen.adoption.models.PetGender
 import com.upb.littlepaw.homescreen.adoption.models.PetType
-import kotlinx.coroutines.flow.first
+import com.upb.littlepaw.homescreen.profile.models.User
+import com.upb.littlepaw.homescreen.profile.models.UserEntity
 
-@Database(entities = [PetCard::class], version = 1)
+@Database(entities = [PetCard::class, UserEntity::class], version = 1)
 @TypeConverters(PetTypeConverters::class, PetGenderConverters::class)
-abstract class PetsPersistency:RoomDatabase() {
+abstract class RoomPersistency:RoomDatabase() {
     abstract fun PetsDao(): PetsDao
+    abstract fun UsersDao(): UsersDao
 
     companion object {
-        var instance: PetsPersistency? = null
-        fun getInstance(context: Context): PetsPersistency {
+        var instance: RoomPersistency? = null
+        fun getInstance(context: Context): RoomPersistency {
             if (instance == null) {
                 instance =
-                    Room.databaseBuilder(context, PetsPersistency::class.java, "PetsDb.db").build()
+                    Room.databaseBuilder(context, RoomPersistency::class.java, "RoomDb.db").build()
             }
             return instance!!
         }
@@ -55,3 +53,4 @@ class PetGenderConverters {
         return Gson().fromJson(petGenreString, type)
     }
 }
+

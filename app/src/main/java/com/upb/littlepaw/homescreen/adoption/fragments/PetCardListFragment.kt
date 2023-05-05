@@ -58,8 +58,9 @@ class PetCardListFragment : Fragment() {
         }
 
         adoptionViewModel.petCardsList.observe(viewLifecycleOwner) {
-            (binding.petCardListRv.adapter as PetCardListRecyclerViewAdapter).updatePetCardList(it)
+            (binding.petCardListRv.adapter as PetCardListRecyclerViewAdapter).updatePetCardList(adoptionViewModel.getFilteredPetCardsList())
         }
+
     }
 
     @SuppressLint("NotifyDataSetChanged")

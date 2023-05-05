@@ -1,8 +1,15 @@
 package com.upb.littlepaw.register.viewmodels
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.upb.littlepaw.data.repositories.UsersRepository
 import com.upb.littlepaw.homescreen.profile.models.User
+import com.upb.littlepaw.homescreen.profile.models.UserEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 
 class RegisterViewModel: ViewModel() {
@@ -17,6 +24,7 @@ class RegisterViewModel: ViewModel() {
     val errorEmail = MutableLiveData<String>()
     val errorPassword = MutableLiveData<String>()
     val errorRepeatPassword = MutableLiveData<String>()
+    val usersRepository = UsersRepository()
     init {
         setName("")
         setEmail("")
@@ -169,6 +177,18 @@ class RegisterViewModel: ViewModel() {
     fun validateAll():Boolean {
         setButtonEnabled(validateFullName() && validateEmail() && validateNewPassword() && validateRepeatNewPassword() && user.value?.country?.value != null)
         return validateFullName() && validateEmail() && validateNewPassword() && validateRepeatNewPassword() && user.value?.country?.value != null
+    }
+
+    fun createUser(context: Context, user: UserEntity, onSuccess: () -> Unit, onError: () -> Unit) {
+        viewModelScope.launch {
+            flow {
+                usersRepository.registerUser(context, user)
+                emit(user)
+            }.flowOn(Dispatchers.IO).onEach { onSuccess() }.catch {
+                it.printStackTrace()
+                onError()
+            }.collect()
+        }
     }
 
 
