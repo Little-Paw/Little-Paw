@@ -5,9 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 
-class User(var name: MutableLiveData<String>, var email:MutableLiveData<String>, var password:MutableLiveData<String>, var country:MutableLiveData<String?>?)
+class User(var name: MutableLiveData<String>, var email:MutableLiveData<String>, var password:MutableLiveData<String>, var country:MutableLiveData<String?>?):Serializable
 
 @Entity
 class UserEntity(
@@ -15,6 +16,6 @@ class UserEntity(
     @PrimaryKey
     var email: String,
     var password: String,
-    var country: String) {
+    var country: String){
     constructor(user:User):this(user.name.value!!, user.email.value!!, user.password.value!!, user.country?.value!!)
 }

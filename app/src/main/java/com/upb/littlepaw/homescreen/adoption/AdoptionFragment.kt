@@ -23,6 +23,9 @@ import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.homescreen.adoption.fragments.PetCardListFragment
 import com.upb.littlepaw.homescreen.adoption.fragments.PetTypeListFragment
 import com.upb.littlepaw.utils.replaceFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
 
@@ -54,6 +57,7 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         childFragmentManager.replaceFragment(binding.selectPetTypeFragment.id, selectPetTypeFragment, false, PetTypeListFragment.TAG)
         childFragmentManager.replaceFragment(binding.petCardListFragment.id, petCardListFragment, false, PetCardListFragment.TAG)
 
@@ -87,6 +91,9 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
 
     override fun onResume() {
         super.onResume()
+        CoroutineScope(Dispatchers.Main).launch {
+            homeViewModel.getUser(requireContext())
+        }
         homeViewModel.setStatusBarColor(R.color.white)
     }
 }

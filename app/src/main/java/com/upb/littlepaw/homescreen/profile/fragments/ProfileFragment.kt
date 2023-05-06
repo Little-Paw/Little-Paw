@@ -1,10 +1,12 @@
 package com.upb.littlepaw.homescreen.profile.fragments
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -21,6 +23,7 @@ import com.upb.littlepaw.databinding.FragmentProfileBinding
 import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.homescreen.profile.fragments.viewmodels.ProfileViewModel
 import com.upb.littlepaw.homescreen.profile.models.User
+import com.upb.littlepaw.homescreen.profile.models.UserEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -59,11 +62,14 @@ class ProfileFragment: Fragment() {
         binding.saveButtonProfile.setOnClickListener {
             println(profileViewModel.user.value?.name?.value?.toString())
             println(profileViewModel.user.value?.email?.value?.toString())
-            println(profileViewModel.user.value?.country.toString())
-            view.findNavController().navigate(R.id.adoptionFragment)
+            println(profileViewModel.user.value?.country?.value?.toString())
+            val user = UserEntity(profileViewModel.user.value!!)
+            profileViewModel.updateUser(requireContext(), user, {view.findNavController().navigate(R.id.adoptionFragment)}, {error ->
+                Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show() })
+
         }
         binding.changePasswordButtonProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_changePasswordFragment)
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToChangePasswordFragment(profileViewModel.user.value!!))
         }
         binding.editTextFullNameProfile.setOnFocusChangeListener{ _, hasFocus ->
             if(hasFocus) {
@@ -95,6 +101,8 @@ class ProfileFragment: Fragment() {
 
 
     }
+
+
 
     override fun onResume() {
         super.onResume()

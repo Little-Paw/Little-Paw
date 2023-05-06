@@ -13,6 +13,9 @@ import com.upb.littlepaw.LoginActivity
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.FragmentSideBarBinding
 import com.upb.littlepaw.homescreen.HomeViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class SideBarFragment : Fragment(R.layout.fragment_side_bar) {
@@ -35,6 +38,11 @@ class SideBarFragment : Fragment(R.layout.fragment_side_bar) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        CoroutineScope(Dispatchers.Main).launch {
+            homeViewModel.getUser(requireContext())
+            binding.profileSideBarName.text = homeViewModel.user.value?.name
+        }
+
         val navHostFragment =
             parentFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
@@ -47,5 +55,9 @@ class SideBarFragment : Fragment(R.layout.fragment_side_bar) {
         binding.logOutButton.setOnClickListener {
             activity?.finish()
         }
+        homeViewModel.user.observe(viewLifecycleOwner) {
+            binding.profileSideBarName.text = it.name
+        }
+
     }
 }

@@ -1,11 +1,23 @@
 package com.upb.littlepaw.changepassscreen
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.upb.littlepaw.data.repositories.UsersRepository
+import com.upb.littlepaw.homescreen.profile.models.User
+import com.upb.littlepaw.homescreen.profile.models.UserEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 class ChangePasswordViewModel: ViewModel() {
+    val user = MutableLiveData<User>(User(MutableLiveData<String>(), MutableLiveData<String>(), MutableLiveData<String>(), MutableLiveData<String?>()))
+
     val oldPassword = MutableLiveData<String>()
     val showOldPassword = MutableLiveData<Boolean>()
+    val errorOldPassword = MutableLiveData<String>()
+    val touchedOldPassword = MutableLiveData<Boolean>()
 
     val newPassword = MutableLiveData<String>()
     val showNewPassword = MutableLiveData<Boolean>()
@@ -18,10 +30,13 @@ class ChangePasswordViewModel: ViewModel() {
     val touchedRepeatNewPassword = MutableLiveData<Boolean>()
 
     val buttonEnabled = MutableLiveData<Boolean>()
+    val usersRepository = UsersRepository()
 
     init {
         setOldPassword("")
         setShowOldPassword(false)
+        setErrorNewPassword("")
+        setTouchedOldPassword(false)
 
         setNewPassword("")
         setShowNewPassword(false)
@@ -40,8 +55,16 @@ class ChangePasswordViewModel: ViewModel() {
         this.oldPassword.value = oldPassword
     }
 
+    fun setErrorOldPassword(errorOldPassword: String) {
+        this.errorOldPassword.value = errorOldPassword
+    }
+
     fun setShowOldPassword(showOldPassword: Boolean) {
         this.showOldPassword.value = showOldPassword
+    }
+
+    fun setTouchedOldPassword(touchedOldPassword: Boolean) {
+        this.touchedOldPassword.value = touchedOldPassword
     }
 
     fun setNewPassword(newPassword: String) {
@@ -83,8 +106,25 @@ class ChangePasswordViewModel: ViewModel() {
     fun validatePasswords(): Boolean {
         val validateNewPassword = validateNewPassword()
         val validateRepeatNewPassword = validateRepeatNewPassword()
-        setButtonEnabled(validateNewPassword && validateRepeatNewPassword)
-        return validateNewPassword && validateRepeatNewPassword
+        val validateOldPassword = validateOldPassword()
+        setButtonEnabled(validateNewPassword && validateRepeatNewPassword && validateOldPassword)
+        return validateNewPassword && validateRepeatNewPassword && validateOldPassword
+    }
+
+    fun validateOldPassword():Boolean {
+        val oldPassword = oldPassword.value.toString()
+        val compareOldPassword = user.value?.password?.value.toString()
+        return if (oldPassword == compareOldPassword) {
+            setErrorOldPassword("")
+            true
+        } else {
+            if(touchedOldPassword.value!!) {
+                setErrorOldPassword("The password is incorrect")
+            } else {
+                setErrorOldPassword("")
+            }
+            false
+        }
     }
 
     fun validateNewPassword(): Boolean {
@@ -129,4 +169,14 @@ class ChangePasswordViewModel: ViewModel() {
         }
     }
 
+    fun updatePassword(context: Context, user: UserEntity, onSuccess: () -> Unit, onError:(error:String) -> Unit) {
+        viewModelScope.launch{
+            flow{
+                usersRepository.updateUser(context, user)
+                emit(user)
+            }.flowOn(Dispatchers.IO).onEach { onSuccess() }.catch { onError.invoke("An error has occurred") }.collect()
+        }
+    }
+
 }
+

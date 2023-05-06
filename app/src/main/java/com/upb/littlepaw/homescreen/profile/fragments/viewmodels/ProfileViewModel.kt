@@ -3,8 +3,13 @@ package com.upb.littlepaw.homescreen.profile.fragments.viewmodels
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.upb.littlepaw.data.repositories.UsersRepository
 import com.upb.littlepaw.homescreen.profile.models.User
+import com.upb.littlepaw.homescreen.profile.models.UserEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 
 class ProfileViewModel: ViewModel() {
@@ -33,6 +38,16 @@ class ProfileViewModel: ViewModel() {
             setName(userEntity.name)
             setEmail(userEntity.email)
             setCountry(userEntity.country)
+            setPassword(userEntity.password)
+        }
+    }
+
+    fun updateUser(context: Context, user: UserEntity, onSuccess: () -> Unit, onError:(error:String) -> Unit) {
+        viewModelScope.launch{
+            flow{
+                usersRepository.updateUser(context, user)
+                emit(user)
+            }.flowOn(Dispatchers.IO).onEach { onSuccess() }.catch { onError.invoke("An error has occurred") }.collect()
         }
     }
 
@@ -43,6 +58,10 @@ class ProfileViewModel: ViewModel() {
 
     fun setEmail(email:String) {
         this.user.value?.email?.value = email
+    }
+
+    fun setPassword(password:String) {
+        this.user.value?.password?.value = password
     }
 
     fun setCountry(country:String) {

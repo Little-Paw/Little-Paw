@@ -18,6 +18,11 @@ class UsersRepository {
 
     }
 
+    suspend fun updateUser(context:Context, user:UserEntity) {
+        RoomPersistency.getInstance(context).UsersDao().updateUser(user)
+        AuthPersistency.saveUser(context, user)
+    }
+
     fun login(context: Context, email: String, password: String): Flow<UserEntity> {
         return RoomPersistency.getInstance(context).UsersDao().getUser(email, password).map {
             it.first()
