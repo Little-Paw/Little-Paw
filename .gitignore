@@ -8,5 +8,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-.env*
-!.env.example
+app.properties

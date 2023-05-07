@@ -1,5 +1,6 @@
 package com.upb.littlepaw.data.api
 
+import com.upb.littlepaw.BuildConfig
 import com.upb.littlepaw.homescreen.adoption.models.PetCard
 import kotlinx.coroutines.flow.Flow
 import me.sianaki.flowretrofitadapter.FlowCallAdapterFactory
@@ -13,9 +14,10 @@ interface Api {
 }
 
 class ApiClient {
+    val backendUrl = BuildConfig.BACKEND_URL
 
     val retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.26.4:8000")
+        .baseUrl(backendUrl)
         .addCallAdapterFactory(FlowCallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
