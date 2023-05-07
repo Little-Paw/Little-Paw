@@ -1,12 +1,14 @@
 package com.upb.littlepaw.homescreen.adoption
 
 import android.content.Context
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.upb.littlepaw.R
 import com.upb.littlepaw.data.repositories.PetsRepository
 import com.upb.littlepaw.data.repositories.UsersRepository
+import com.upb.littlepaw.homescreen.addpet.fragments.SavePetDialog
 import com.upb.littlepaw.homescreen.adoption.models.PetCard
 import com.upb.littlepaw.homescreen.adoption.models.PetGender
 import com.upb.littlepaw.homescreen.adoption.models.PetType
@@ -94,7 +96,7 @@ class AdoptionViewModel : ViewModel() {
     private fun populatePetCardsList(){
         setPetCardsList(
             listOf(
-                PetCard(id=1,"Doki", 15, "Husky", PetType.DOG, PetGender.MALE, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Golden_Retriever_standing_Tucker.jpg/220px-Golden_Retriever_standing_Tucker.jpg", 100),
+                PetCard(id="wdjahdjdad54545","Doki", 15, "Husky", PetType.DOG, PetGender.MALE, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Golden_Retriever_standing_Tucker.jpg/220px-Golden_Retriever_standing_Tucker.jpg", 100),
                 /*
                 PetCard(name = "Buddy", age = 3, breed = "Labrador Retriever", type = PetType.DOG, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 500),
                 PetCard(name = "Luna", age = 2, breed = "Siamese", type = PetType.CAT, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 250),

@@ -25,4 +25,5 @@
     <string name="new_password">New password</string>
     <string name="repeat_new_password">Repeat new password</string>
     <string name="save_password">Save Password</string>
+    <string name="posting_pet_dialog_message">Posting your pet, please wait...</string>
 </resources>
