@@ -14,10 +14,11 @@ import com.upb.littlepaw.homescreen.HomeActivity
 import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.homescreen.favorites.fragments.PetCardFavListFragment
 import com.upb.littlepaw.utils.replaceFragment
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     private lateinit var binding: FragmentFavoritesBinding
-    private val homeViewModel: HomeViewModel by activityViewModels()
+    private val homeViewModel: HomeViewModel by activityViewModel()
     private val viewModel: FavoritesViewModel by viewModels()
 
     private val petCardFavListFragment = PetCardFavListFragment()

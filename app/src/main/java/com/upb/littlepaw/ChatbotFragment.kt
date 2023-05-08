@@ -13,6 +13,7 @@ import com.upb.littlepaw.databinding.FragmentChabotBinding
 import com.upb.littlepaw.homescreen.HomeActivity
 import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.utils.replaceFragment
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +33,7 @@ class ChatbotFragment : Fragment() {
     }
     private lateinit var binding: FragmentChabotBinding
     private val viewModel by lazy { ViewModelProvider(this).get(DialogflowViewModel::class.java) }
-    private val homeViewModel: HomeViewModel by activityViewModels()
+    private val homeViewModel: HomeViewModel by activityViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

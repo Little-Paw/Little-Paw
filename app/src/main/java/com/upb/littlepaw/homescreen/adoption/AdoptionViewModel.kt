@@ -18,14 +18,11 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
-class AdoptionViewModel : ViewModel() {
+class AdoptionViewModel(val petsRepository: PetsRepository, val usersRepository: UsersRepository) : ViewModel() {
 //    var locationCity: String? = null
 //    var locationCountry: String? = null
 
     private val petSearchListeners = mutableListOf<(Unit) -> Unit>()
-
-    val petsRepository = PetsRepository()
-    val usersRepository = UsersRepository()
 
     val petSearchQuery: MutableLiveData<String> = MutableLiveData()
 
@@ -67,9 +64,9 @@ class AdoptionViewModel : ViewModel() {
             petSearchQuery.value.toString(), true) } ?: listOf()
     }
 
-    fun getPetsList(context: Context, onError: () -> Unit) {
+    fun getPetsList(onError: () -> Unit) {
         viewModelScope.launch {
-            petsRepository.getPetsList(context).catch { e ->
+            petsRepository.getPetsList().catch { e ->
                 onError()
                 println(e.toString())
             }.flowOn(Dispatchers.IO).collect{
@@ -80,17 +77,17 @@ class AdoptionViewModel : ViewModel() {
             }
         }
         viewModelScope.launch(Dispatchers.IO) {
-            petsRepository.updatePetsList(context)
+            petsRepository.updatePetsList()
         }
 
     }
 
-    suspend fun isUserLoggedIn(context: Context): Boolean {
-        return usersRepository.isLoggedIn(context)
+    suspend fun isUserLoggedIn(): Boolean {
+        return usersRepository.isLoggedIn()
     }
 
-    fun logout(context:Context): Flow<Unit> {
-        return usersRepository.logout(context)
+    fun logout(): Flow<Unit> {
+        return usersRepository.logout()
     }
 
     private fun populatePetCardsList(){

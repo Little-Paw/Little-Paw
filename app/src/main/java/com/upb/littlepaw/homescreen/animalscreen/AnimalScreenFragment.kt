@@ -10,13 +10,14 @@ import androidx.navigation.fragment.navArgs
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.FragmentAnimalScreenBinding
 import com.upb.littlepaw.homescreen.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 
 class AnimalScreenFragment : Fragment() {
 
     val args: AnimalScreenFragmentArgs by navArgs()
     lateinit var binding:FragmentAnimalScreenBinding
-    private val homeViewModel: HomeViewModel by activityViewModels()
+    private val homeViewModel: HomeViewModel by activityViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

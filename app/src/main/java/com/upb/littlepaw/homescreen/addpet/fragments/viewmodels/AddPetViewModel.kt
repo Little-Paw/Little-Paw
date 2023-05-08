@@ -9,8 +9,7 @@ import com.upb.littlepaw.homescreen.addpet.models.Pet
 import com.upb.littlepaw.homescreen.adoption.models.PetGender
 import kotlinx.coroutines.launch
 
-class AddPetViewModel: ViewModel() {
-    val petsRepository = PetsRepository()
+class AddPetViewModel(val petsRepository: PetsRepository): ViewModel() {
 
     val pet = MutableLiveData(Pet("","","","",PetGender.MALE, ByteArray(0)))
 
@@ -22,10 +21,10 @@ class AddPetViewModel: ViewModel() {
         pet.value = pet.value!!.apply { this.gender = gender }
     }
 
-    fun uploadPet(context: Context, pet: Pet, onSuccess: () -> Unit, onError: () -> Unit) {
+    fun uploadPet(pet: Pet, onSuccess: () -> Unit, onError: () -> Unit) {
         viewModelScope.launch {
             try {
-                val response = petsRepository.addPet(context, pet)
+                val response = petsRepository.addPet(pet)
                 if (response.isSuccessful) {
                     onSuccess()
                 } else {

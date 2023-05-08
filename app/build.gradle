@@ -101,6 +101,10 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    //Koin
+    def koin_android_version = "3.4.0"
+    implementation "io.insert-koin:koin-android:$koin_android_version"
+
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"

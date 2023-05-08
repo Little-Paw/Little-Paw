@@ -18,11 +18,8 @@ class MainActivity : AppCompatActivity() {
         ft.commitAllowingStateLoss()
 
 
-
         val addPetFragment = AddPetFragment()
         supportFragmentManager.beginTransaction().add(R.id.fragment_container, addPetFragment).commit()
-
-
 
     }
 }

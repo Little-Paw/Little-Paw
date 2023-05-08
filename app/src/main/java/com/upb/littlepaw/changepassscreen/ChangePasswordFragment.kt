@@ -14,10 +14,11 @@ import androidx.navigation.fragment.navArgs
 import com.upb.littlepaw.R
 import com.upb.littlepaw.databinding.FragmentChangePasswordBinding
 import com.upb.littlepaw.homescreen.profile.models.UserEntity
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class ChangePasswordFragment : Fragment(R.layout.fragment_change_password) {
     private lateinit var binding: FragmentChangePasswordBinding
-    private val viewModel: ChangePasswordViewModel by viewModels()
+    private val viewModel: ChangePasswordViewModel by activityViewModel()
     val args: ChangePasswordFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -77,7 +78,7 @@ class ChangePasswordFragment : Fragment(R.layout.fragment_change_password) {
         binding.buttonSavePassword.setOnClickListener {
             viewModel.user.value?.password = viewModel.newPassword
             val user = UserEntity(viewModel.user.value!!)
-            viewModel.updatePassword(requireContext(), user, {findNavController().navigate(R.id.profileFragment)}, {error ->
+            viewModel.updatePassword(user, {findNavController().navigate(R.id.profileFragment)}, {error ->
                 Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
             })
         }
