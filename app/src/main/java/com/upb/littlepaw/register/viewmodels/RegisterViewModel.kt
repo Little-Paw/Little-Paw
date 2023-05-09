@@ -4,12 +4,19 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.upb.littlepaw.data.repositories.UsersRepository
 import com.upb.littlepaw.homescreen.profile.models.User
 import com.upb.littlepaw.homescreen.profile.models.UserEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import java.util.regex.Pattern
 
 class RegisterViewModel: ViewModel() {
@@ -25,6 +32,9 @@ class RegisterViewModel: ViewModel() {
     val errorPassword = MutableLiveData<String>()
     val errorRepeatPassword = MutableLiveData<String>()
     val usersRepository = UsersRepository()
+
+    private val auth = Firebase.auth
+
     init {
         setName("")
         setEmail("")
@@ -179,17 +189,66 @@ class RegisterViewModel: ViewModel() {
         return validateFullName() && validateEmail() && validateNewPassword() && validateRepeatNewPassword() && user.value?.country?.value != null
     }
 
-    fun createUser(context: Context, user: UserEntity, onSuccess: () -> Unit, onError: () -> Unit) {
+//    fun createUser(context: Context, user: UserEntity, onSuccess: () -> Unit, onError: () -> Unit) {
+//        viewModelScope.launch {
+//            flow {
+//                usersRepository.registerUser(context, user)
+//                emit(user)
+//            }.flowOn(Dispatchers.IO).onEach { onSuccess() }.catch {
+//                it.printStackTrace()
+//                onError()
+//            }.collect()
+//        }
+//    }
+
+//    fun createUser(context: Context, user: UserEntity, onSuccess: () -> Unit, onError: (String) -> Unit) {
+//        val email = user.email
+//        val password = user.password
+//
+//        auth.createUserWithEmailAndPassword(email, password)
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    // Registro exitoso
+//                    onSuccess()
+//                } else {
+//                    val errorMessage = when (val exception = task.exception) {
+//                        is FirebaseAuthInvalidCredentialsException -> "Credenciales inválidas"
+//                        is FirebaseAuthUserCollisionException -> "El usuario ya está registrado"
+//                        is FirebaseException -> "Error de Firebase: ${exception.message}"
+//                        else -> "Error desconocido: ${exception?.message}"
+//                    }
+//                    onError(errorMessage)
+//                }
+//            }
+//    }
+
+    fun createUser(
+        context: Context,
+        user: UserEntity,
+        onSuccess: () -> Unit,
+        onError: (error: String) -> Unit
+    ) {
         viewModelScope.launch {
             flow {
+                val email = user.email
+                val password = user.password
+
+                auth.createUserWithEmailAndPassword(email, password).await()
                 usersRepository.registerUser(context, user)
                 emit(user)
             }.flowOn(Dispatchers.IO).onEach { onSuccess() }.catch {
-                it.printStackTrace()
-                onError()
+                val errorMessage = when (val exception = it) {
+                    is FirebaseAuthInvalidCredentialsException -> "Credenciales inválidas"
+                    is FirebaseAuthUserCollisionException -> "El usuario ya está registrado"
+                    is FirebaseException -> "Error de Firebase: ${exception.message}"
+                    else -> "Error desconocido: ${exception?.message}"
+                }
+                onError(errorMessage)
             }.collect()
         }
     }
+
+
 
 
 }
