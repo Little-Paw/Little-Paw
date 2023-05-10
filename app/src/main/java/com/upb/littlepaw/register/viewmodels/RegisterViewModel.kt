@@ -247,8 +247,4 @@ class RegisterViewModel: ViewModel() {
             }.collect()
         }
     }
-
-
-
-
 }

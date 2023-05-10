@@ -25,16 +25,6 @@ class LoginViewModel : ViewModel() {
     fun validate(): Boolean {
         return !email.value.isNullOrEmpty() && !password.value.isNullOrEmpty()
     }
-
-
-//    fun login(email: String, password: String, onSuccess: () -> Unit, onError: (error: String) -> Unit) {
-//        if (email == "juan@gmail.com" && password == "123") {
-//            onSuccess.invoke()
-//        } else {
-//            onError.invoke("Email or password incorrect.")
-//        }
-//    }
-
 //    fun loginUser(context: Context,email:String, password:String, onSuccess: () -> Unit, onError: (error: String) -> Unit) {
 //        viewModelScope.launch {
 //            flow{
@@ -62,23 +52,44 @@ class LoginViewModel : ViewModel() {
 //            }
 //    }
 
-    fun loginUser(
-        context: Context,
-        email: String,
-        password: String,
-        onSuccess: () -> Unit,
-        onError: (error: String) -> Unit
-    ) {
+//    fun loginUser(
+//        context: Context,
+//        email: String,
+//        password: String,
+//        onSuccess: () -> Unit,
+//        onError: (error: String) -> Unit
+//    ) {
+//        viewModelScope.launch {
+//            flow {
+//                auth.signInWithEmailAndPassword(email, password).await()
+//                val user = usersRepository.login(context, email, password).first()
+//                emit(user)
+//            }.flowOn(Dispatchers.IO).onEach { onSuccess() }.catch { onError.invoke("Email or password incorrect.") }.collect()
+//        }
+//    }
+
+    fun loginUser(context: Context, email: String, password: String, onSuccess: () -> Unit, onError: (error: String) -> Unit) {
         viewModelScope.launch {
             flow {
-                auth.signInWithEmailAndPassword(email, password).await()
                 val user = usersRepository.login(context, email, password).first()
                 emit(user)
-            }.flowOn(Dispatchers.IO).onEach { onSuccess() }.catch { onError.invoke("Email or password incorrect.") }.collect()
+            }.flowOn(Dispatchers.IO).catch { error ->
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        onSuccess()
+                    } else {
+                        val errorMessage = when (val exception = task.exception) {
+                            is FirebaseAuthInvalidUserException -> "El usuario no existe"
+                            is FirebaseAuthInvalidCredentialsException -> "Correo o contraseña incorrectos"
+                            is FirebaseAuthException -> "Error de Firebase: ${exception.message}"
+                            else -> "Error desconocido: ${exception?.message}"
+                        }
+                        onError.invoke(errorMessage)
+                    }
+                }
+            }.collect { user ->
+                onSuccess()
+            }
         }
     }
-
-
-
-
 }
