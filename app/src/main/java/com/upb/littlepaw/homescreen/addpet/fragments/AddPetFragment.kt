@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -21,18 +22,19 @@ import com.upb.littlepaw.databinding.FragmentAddPetBinding
 import com.upb.littlepaw.homescreen.HomeActivity
 import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.homescreen.addpet.fragments.viewmodels.AddPetViewModel
-import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import com.upb.littlepaw.homescreen.adoption.models.PetType
 import java.io.ByteArrayOutputStream
 
 
 class AddPetFragment: Fragment() {
     private lateinit var binding: FragmentAddPetBinding
-    private val addPetViewModel: AddPetViewModel by activityViewModel()
-    private val homeViewModel: HomeViewModel by activityViewModel()
+    private val addPetViewModel: AddPetViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by activityViewModels()
 
     val fileChooserContract = registerForActivityResult(ActivityResultContracts.GetContent()) { imageUri ->
         if (imageUri != null) {
             val addPhotoButton = binding.addPhotoButton
+
             Glide.with(this)
                 .load(imageUri).circleCrop()
                 .into(object : CustomTarget<Drawable>() {
@@ -75,11 +77,18 @@ class AddPetFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                addPetViewModel.onPetTypeSelected(parent?.getItemAtPosition(position) as PetType)
+            }
 
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
         binding.buttonSave.setOnClickListener{
             val addPetDialog = SavePetDialog()
             addPetDialog.show(parentFragmentManager, "SavePetDialog")
-            addPetViewModel.uploadPet(addPetViewModel.pet.value!!, {
+            addPetViewModel.uploadPet(requireContext(), addPetViewModel.pet.value!!, {
                 val action = AddPetFragmentDirections.actionAddPetFragmentToAdoptionFragment()
                 findNavController().navigate(action)
                 Toast.makeText(context, "Pet posted successfully", Toast.LENGTH_LONG).show()
