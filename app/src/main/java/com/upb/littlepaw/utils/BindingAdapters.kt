@@ -1,5 +1,6 @@
 package com.upb.littlepaw.utils
 
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
@@ -7,6 +8,7 @@ import androidx.databinding.InverseBindingListener
 import com.bumptech.glide.Glide
 import com.hbb20.CountryPickerView
 import com.hbb20.countrypicker.config.CPViewConfig
+import com.upb.littlepaw.homescreen.adoption.models.PetCard
 
 class BindingAdapters {
     companion object {
@@ -35,5 +37,9 @@ class BindingAdapters {
         fun loadUrlImageView(imageView: ImageView, url: String) {
             Glide.with(imageView).load(url).into(imageView)
         }
+//        @JvmStatic @BindingAdapter("age")
+//        fun setAge(editText: EditText, age: Int) {
+//            //editText.setT = age.toString()
+//        }
     }
 }

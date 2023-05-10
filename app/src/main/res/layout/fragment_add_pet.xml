@@ -79,7 +79,7 @@
             android:hint="Age"
             android:inputType="number"
             android:padding="15dp"
-            android:text="@={viewModel.pet.birthday}"
+            android:text="@={``+viewModel.pet.age}"
             android:textColorHint="#B3B7B7"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -216,7 +216,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/menuButton"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/addpet" />
+            app:srcCompat="@drawable/ic_launcher" />
 
         <Button
             android:id="@+id/menuButton"
