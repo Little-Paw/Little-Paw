@@ -22,6 +22,7 @@ class PetsRepository(val apiClient: ApiClient, val roomPersistency: RoomPersiste
         val previusPets = roomPersistency.db.PetsDao().getPets().first()
         if(isNetworkAvailable(context)) {
             val petsList = apiClient.getPetsList().first()
+            println(petsList);
             if (petsList.isNotEmpty() && isThereChanges(previusPets, petsList)) {
                 roomPersistency.db.PetsDao().deletePets()
                 roomPersistency.db.PetsDao().savePets(petsList)

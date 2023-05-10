@@ -23,7 +23,7 @@ class FavoritesViewModel : ViewModel() {
 
     fun populatePetCardFavList(){
         setPetCardFavsList(listOf(
-            PetCard(id="ahtrmk45rth45hr",name = "Buddy", age = 3, breed = "Labrador Retriever", type = PetType.DOG, gender = PetGender.MALE, image = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Golden_Retriever_standing_Tucker.jpg/220px-Golden_Retriever_standing_Tucker.jpg", distanceMeters = 500),
+            PetCard(id="ahtrmk45rth45hr",name = "Buddy", age = 3, breed = "Labrador Retriever", type = PetType.DOG, gender = PetGender.MALE, image = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Golden_Retriever_standing_Tucker.jpg/220px-Golden_Retriever_standing_Tucker.jpg", location = "AU"),
             /*
             PetCard(name = "Luna", age = 2, breed = "Siamese", type = PetType.CAT, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 250),
             PetCard(name = "Milo", age = 5, breed = "Maine Coon", type = PetType.CAT, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 300),
