@@ -17,6 +17,7 @@ import com.upb.littlepaw.databinding.FragmentPetCardBinding
 import com.upb.littlepaw.homescreen.adoption.AdoptionFragmentDirections
 import com.upb.littlepaw.homescreen.adoption.models.PetCard
 import com.upb.littlepaw.homescreen.adoption.models.PetGender
+import com.upb.littlepaw.utils.Alpha2Converter
 
 class PetCardListRecyclerViewAdapter(
     private var petList: List<PetCard>,
@@ -40,7 +41,7 @@ class PetCardListRecyclerViewAdapter(
         holder.nameTitleTextView.text = pet.name
         holder.breedSubtitleTextView.text = pet.breed
         holder.ageTextView.text = pet.age.toString() + " years old"
-        holder.distanceTextView.text = "Distance: " + pet.distanceMeters.toString() + " km"
+        holder.distanceTextView.text = "Location: " + Alpha2Converter.alpha2ToFullName(pet.location)
         holder.genderIconImage.setImageResource(if(pet.gender === PetGender.MALE) R.drawable.ic_male_symbol else R.drawable.ic_female_symbol)
         //holder.cardImage.setImageResource(pet.image)
         Glide.with(holder.itemView).load(pet.image).into(holder.cardImage)

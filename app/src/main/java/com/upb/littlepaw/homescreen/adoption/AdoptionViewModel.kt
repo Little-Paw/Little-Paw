@@ -93,7 +93,7 @@ class AdoptionViewModel(val petsRepository: PetsRepository, val usersRepository:
     private fun populatePetCardsList(){
         setPetCardsList(
             listOf(
-                PetCard(id="wdjahdjdad54545","Doki", 15, "Husky", PetType.DOG, PetGender.MALE, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Golden_Retriever_standing_Tucker.jpg/220px-Golden_Retriever_standing_Tucker.jpg", 100),
+                PetCard(id="wdjahdjdad54545","Doki", 15, "Husky", PetType.DOG, PetGender.MALE, "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Golden_Retriever_standing_Tucker.jpg/220px-Golden_Retriever_standing_Tucker.jpg", "AU"),
                 /*
                 PetCard(name = "Buddy", age = 3, breed = "Labrador Retriever", type = PetType.DOG, gender = PetGender.MALE, image = R.drawable.dog_placeholder, distanceMeters = 500),
                 PetCard(name = "Luna", age = 2, breed = "Siamese", type = PetType.CAT, gender = PetGender.FEMALE, image = R.drawable.dog_placeholder, distanceMeters = 250),

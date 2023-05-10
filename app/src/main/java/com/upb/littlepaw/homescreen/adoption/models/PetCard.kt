@@ -22,5 +22,5 @@ enum class PetGender {
 }
 
 @Entity
-data class PetCard(@PrimaryKey val id:String,val name: String, val age: Int, val breed: String, val type: PetType, val gender: PetGender, val image: String, val distanceMeters: Int) :
+data class PetCard(@PrimaryKey val id:String,val name: String, val age: Int, val breed: String, val type: PetType, val gender: PetGender, val image: String, val location:String) :
     Serializable

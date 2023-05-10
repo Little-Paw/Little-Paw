@@ -26,7 +26,7 @@ class App:Application() {
         single { AuthPersistency(get()) }
         single { UsersRepository(get(),get() ) }
         viewModel { AdoptionViewModel(get(), get()) }
-        viewModel { AddPetViewModel(get()) }
+        viewModel { AddPetViewModel(get(), get()) }
         viewModel {ChangePasswordViewModel(get())}
         viewModel { RegisterViewModel(get()) }
         viewModel {HomeViewModel(get())}
