@@ -23,13 +23,15 @@ import com.upb.littlepaw.homescreen.HomeActivity
 import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.homescreen.addpet.fragments.viewmodels.AddPetViewModel
 import com.upb.littlepaw.homescreen.adoption.models.PetType
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.ByteArrayOutputStream
 
 
 class AddPetFragment: Fragment() {
     private lateinit var binding: FragmentAddPetBinding
-    private val addPetViewModel: AddPetViewModel by viewModels()
-    private val homeViewModel: HomeViewModel by activityViewModels()
+    private val addPetViewModel: AddPetViewModel by viewModel()
+    private val homeViewModel: HomeViewModel by activityViewModel()
 
     val fileChooserContract = registerForActivityResult(ActivityResultContracts.GetContent()) { imageUri ->
         if (imageUri != null) {
@@ -88,7 +90,7 @@ class AddPetFragment: Fragment() {
         binding.buttonSave.setOnClickListener{
             val addPetDialog = SavePetDialog()
             addPetDialog.show(parentFragmentManager, "SavePetDialog")
-            addPetViewModel.uploadPet(requireContext(), addPetViewModel.pet.value!!, {
+            addPetViewModel.uploadPet( addPetViewModel.pet.value!!, {
                 val action = AddPetFragmentDirections.actionAddPetFragmentToAdoptionFragment()
                 findNavController().navigate(action)
                 Toast.makeText(context, "Pet posted successfully", Toast.LENGTH_LONG).show()
