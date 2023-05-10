@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import com.upb.littlepaw.data.api.AddPetResponse
 import com.upb.littlepaw.data.api.ApiClient
+import com.upb.littlepaw.data.persistency.AppRoomDatabase
 import com.upb.littlepaw.data.persistency.RoomPersistency
 import com.upb.littlepaw.homescreen.addpet.models.Pet
 import com.upb.littlepaw.homescreen.adoption.models.PetCard
@@ -11,22 +12,19 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import retrofit2.Response
 
-class PetsRepository {
-    val apiClient = ApiClient()
+class PetsRepository(val apiClient: ApiClient, val roomPersistency: RoomPersistency, val context:Context) {
 
-    fun getPetsList(context:Context):Flow<List<PetCard>> {
-        val roomPersistency = RoomPersistency.getInstance(context)
-        return roomPersistency.PetsDao().getPets()
+    fun getPetsList():Flow<List<PetCard>> {
+        return roomPersistency.db.PetsDao().getPets()
     }
 
-    suspend fun updatePetsList(context:Context) {
-        val roomPersistency = RoomPersistency.getInstance(context)
-        val previusPets = roomPersistency.PetsDao().getPets().first()
+    suspend fun updatePetsList() {
+        val previusPets = roomPersistency.db.PetsDao().getPets().first()
         if(isNetworkAvailable(context)) {
             val petsList = apiClient.getPetsList().first()
             if (petsList.isNotEmpty() && isThereChanges(previusPets, petsList)) {
-                roomPersistency.PetsDao().deletePets()
-                roomPersistency.PetsDao().savePets(petsList)
+                roomPersistency.db.PetsDao().deletePets()
+                roomPersistency.db.PetsDao().savePets(petsList)
             }
         }
     }
@@ -39,7 +37,7 @@ class PetsRepository {
         return false
     }
 
-    suspend fun addPet(context:Context, pet: Pet): Response<AddPetResponse> {
+    suspend fun addPet(pet: Pet): Response<AddPetResponse> {
         if(isNetworkAvailable(context)) {
             return apiClient.addPet(pet).first()
         }else{

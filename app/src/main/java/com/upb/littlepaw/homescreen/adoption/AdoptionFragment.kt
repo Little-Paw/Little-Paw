@@ -23,21 +23,20 @@ import com.upb.littlepaw.databinding.FragmentAdoptionBinding
 import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.homescreen.adoption.fragments.PetCardListFragment
 import com.upb.littlepaw.homescreen.adoption.fragments.PetTypeListFragment
+import com.upb.littlepaw.utils.Alpha2Converter
 import com.upb.littlepaw.utils.replaceFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
 
     private lateinit var binding: FragmentAdoptionBinding
 
+    private val adoptionViewModel:AdoptionViewModel by activityViewModel()
 
-    private val adoptionViewModel: AdoptionViewModel by lazy {
-        ViewModelProvider(requireActivity())[AdoptionViewModel::class.java]
-    }
-
-    private val homeViewModel: HomeViewModel by activityViewModels()
+    private val homeViewModel: HomeViewModel by activityViewModel()
 
     private val petCardListFragment = PetCardListFragment()
     private val selectPetTypeFragment = PetTypeListFragment()
@@ -58,6 +57,11 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        CoroutineScope(Dispatchers.Main).launch {
+            homeViewModel.getUser()
+            binding.animalLocationAnimalScreen.text =  Alpha2Converter.alpha2ToFullName(homeViewModel.user.value?.country.toString())
+        }
 
         childFragmentManager.replaceFragment(binding.selectPetTypeFragment.id, selectPetTypeFragment, false, PetTypeListFragment.TAG)
         childFragmentManager.replaceFragment(binding.petCardListFragment.id, petCardListFragment, false, PetCardListFragment.TAG)
@@ -88,16 +92,22 @@ class AdoptionFragment : Fragment(R.layout.fragment_adoption) {
             findNavController().navigate(AdoptionFragmentDirections.actionAdoptionFragmentToProfileFragment())
         }
 
+        homeViewModel.user.observe(viewLifecycleOwner) {
+            binding.animalLocationAnimalScreen.text = Alpha2Converter.alpha2ToFullName(it.country)
+        }
+
     }
 
     override fun onResume() {
         super.onResume()
         CoroutineScope(Dispatchers.Main).launch {
-            homeViewModel.getUser(requireContext())
+            homeViewModel.getUser()
         }
         homeViewModel.setStatusBarColor(R.color.white)
-        adoptionViewModel.getPetsList(requireContext()){
-            Toast.makeText(requireContext(), "Erro while getting pets", Toast.LENGTH_SHORT).show()
+        adoptionViewModel.getPetsList {
+            Toast.makeText(requireContext(), "Error while getting pets", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 }

@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 
-class RegisterViewModel: ViewModel() {
+class RegisterViewModel(val usersRepository: UsersRepository): ViewModel() {
     val user = MutableLiveData<User>(User(MutableLiveData<String>(), MutableLiveData<String>(), MutableLiveData<String>(), MutableLiveData<String?>()))
     val repeatPassword = MutableLiveData<String>()
     val touchedFullName = MutableLiveData<Boolean>()
@@ -24,7 +24,6 @@ class RegisterViewModel: ViewModel() {
     val errorEmail = MutableLiveData<String>()
     val errorPassword = MutableLiveData<String>()
     val errorRepeatPassword = MutableLiveData<String>()
-    val usersRepository = UsersRepository()
     init {
         setName("")
         setEmail("")
@@ -179,10 +178,10 @@ class RegisterViewModel: ViewModel() {
         return validateFullName() && validateEmail() && validateNewPassword() && validateRepeatNewPassword() && user.value?.country?.value != null
     }
 
-    fun createUser(context: Context, user: UserEntity, onSuccess: () -> Unit, onError: () -> Unit) {
+    fun createUser(user: UserEntity, onSuccess: () -> Unit, onError: () -> Unit) {
         viewModelScope.launch {
             flow {
-                usersRepository.registerUser(context, user)
+                usersRepository.registerUser(user)
                 emit(user)
             }.flowOn(Dispatchers.IO).onEach { onSuccess() }.catch {
                 it.printStackTrace()

@@ -11,12 +11,12 @@ import com.upb.littlepaw.homescreen.profile.models.User
 import com.upb.littlepaw.homescreen.profile.models.UserEntity
 import org.apache.commons.lang3.mutable.Mutable
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel(val usersRepository: UsersRepository): ViewModel() {
     lateinit var onClickMenuButton: () -> Unit
     var user: MutableLiveData<UserEntity> = MutableLiveData<UserEntity>()
     val sideBarOpen = MutableLiveData<Boolean>()
     val statusBarColor = MutableLiveData<Int>()
-    val usersRepository = UsersRepository()
+
 
     init {
         setSideBarOpen(false)
@@ -25,8 +25,8 @@ class HomeViewModel: ViewModel() {
 
 
 
-    suspend fun getUser(context: Context) {
-        val user = usersRepository.getLoggedUser(context)
+    suspend fun getUser() {
+        val user = usersRepository.getLoggedUser()
         this.user.value = user
     }
 

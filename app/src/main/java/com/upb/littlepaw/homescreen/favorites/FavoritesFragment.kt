@@ -13,11 +13,16 @@ import com.upb.littlepaw.databinding.FragmentFavoritesBinding
 import com.upb.littlepaw.homescreen.HomeActivity
 import com.upb.littlepaw.homescreen.HomeViewModel
 import com.upb.littlepaw.homescreen.favorites.fragments.PetCardFavListFragment
+import com.upb.littlepaw.utils.Alpha2Converter
 import com.upb.littlepaw.utils.replaceFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
     private lateinit var binding: FragmentFavoritesBinding
-    private val homeViewModel: HomeViewModel by activityViewModels()
+    private val homeViewModel: HomeViewModel by activityViewModel()
     private val viewModel: FavoritesViewModel by viewModels()
 
     private val petCardFavListFragment = PetCardFavListFragment()
@@ -34,6 +39,10 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        CoroutineScope(Dispatchers.Main).launch {
+            homeViewModel.getUser()
+            binding.animalLocationAnimalScreen.text =  Alpha2Converter.alpha2ToFullName(homeViewModel.user.value?.country.toString())
+        }
         childFragmentManager.replaceFragment(binding.petCardListFragment.id, petCardFavListFragment, false, PetCardFavListFragment.TAG)
 
         binding.menuButton.setOnClickListener {
@@ -42,6 +51,9 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
         binding.profileIconButton.setOnClickListener {
             findNavController().navigate(FavoritesFragmentDirections.actionFavoritesFragmentToProfileFragment())
+        }
+        homeViewModel.user.observe(viewLifecycleOwner) {
+            binding.animalLocationAnimalScreen.text = Alpha2Converter.alpha2ToFullName(it.country)
         }
     }
 

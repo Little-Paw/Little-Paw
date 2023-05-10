@@ -16,14 +16,20 @@ import com.upb.littlepaw.databinding.FragmentPetCardListBinding
 import com.upb.littlepaw.homescreen.adoption.AdoptionFragmentDirections
 import com.upb.littlepaw.homescreen.adoption.AdoptionViewModel
 import com.upb.littlepaw.homescreen.adoption.adapters.PetCardListRecyclerViewAdapter
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class PetCardListFragment : Fragment() {
     lateinit var binding: FragmentPetCardListBinding
     lateinit var recyclerViewPetCardList: RecyclerView
 
+    /*
     private val adoptionViewModel: AdoptionViewModel by lazy {
         ViewModelProvider(requireActivity())[AdoptionViewModel::class.java]
     }
+
+     */
+
+    private val adoptionViewModel:AdoptionViewModel by activityViewModel()
 
     companion object {
         const val TAG = "PetCardListFragment"
@@ -50,7 +56,7 @@ class PetCardListFragment : Fragment() {
 
         super.onViewCreated(view, savedInstanceState)
 
-        adoptionViewModel.getPetsList(requireContext()){
+        adoptionViewModel.getPetsList {
             Toast.makeText(context, "No hay pets :(", Toast.LENGTH_LONG).show()
         }
         adoptionViewModel.setOnNotifyPetCarListParamsChanged {

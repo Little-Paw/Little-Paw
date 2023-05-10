@@ -12,14 +12,13 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel(val usersRepository: UsersRepository): ViewModel() {
     val user = MutableLiveData<User>(User(MutableLiveData<String>(), MutableLiveData<String>(), MutableLiveData<String>(), MutableLiveData<String?>()))
     val errorFullName = MutableLiveData<String>()
     val errorEmail = MutableLiveData<String>()
     val touchedFullName = MutableLiveData<Boolean>()
     val touchedEmail = MutableLiveData<Boolean>()
     val buttonEnabled = MutableLiveData<Boolean>()
-    val usersRepository = UsersRepository()
 
     init {
         setTouchedFullName(false)
@@ -32,8 +31,8 @@ class ProfileViewModel: ViewModel() {
         setButtonEnabled(false)
     }
 
-    suspend fun initializeUser(context: Context){
-        val userEntity = usersRepository.getLoggedUser(context)
+    suspend fun initializeUser(){
+        val userEntity = usersRepository.getLoggedUser()
         if(userEntity != null) {
             setName(userEntity.name)
             setEmail(userEntity.email)
@@ -42,10 +41,10 @@ class ProfileViewModel: ViewModel() {
         }
     }
 
-    fun updateUser(context: Context, user: UserEntity, onSuccess: () -> Unit, onError:(error:String) -> Unit) {
+    fun updateUser(user: UserEntity, onSuccess: () -> Unit, onError:(error:String) -> Unit) {
         viewModelScope.launch{
             flow{
-                usersRepository.updateUser(context, user)
+                usersRepository.updateUser(user)
                 emit(user)
             }.flowOn(Dispatchers.IO).onEach { onSuccess() }.catch { onError.invoke("An error has occurred") }.collect()
         }

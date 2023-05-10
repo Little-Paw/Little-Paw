@@ -27,11 +27,13 @@ import com.upb.littlepaw.homescreen.profile.models.UserEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment: Fragment() {
     lateinit var binding: FragmentProfileBinding
-    val profileViewModel: ProfileViewModel by viewModels()
-    private val homeViewModel: HomeViewModel by activityViewModels()
+    val profileViewModel: ProfileViewModel by viewModel()
+    private val homeViewModel: HomeViewModel by activityViewModel()
 
     val fileChooseContract = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         Glide.with(this).load(uri).circleCrop().into(object: CustomTarget<Drawable>() {
@@ -57,14 +59,14 @@ class ProfileFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = profileViewModel
         CoroutineScope(Dispatchers.Main).launch {
-            profileViewModel.initializeUser(requireContext())
+            profileViewModel.initializeUser()
         }
         binding.saveButtonProfile.setOnClickListener {
             println(profileViewModel.user.value?.name?.value?.toString())
             println(profileViewModel.user.value?.email?.value?.toString())
             println(profileViewModel.user.value?.country?.value?.toString())
             val user = UserEntity(profileViewModel.user.value!!)
-            profileViewModel.updateUser(requireContext(), user, {view.findNavController().navigate(R.id.adoptionFragment)}, {error ->
+            profileViewModel.updateUser(user, {view.findNavController().navigate(R.id.adoptionFragment)}, {error ->
                 Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show() })
 
         }

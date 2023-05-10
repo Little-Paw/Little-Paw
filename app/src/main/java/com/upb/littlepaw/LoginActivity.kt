@@ -8,11 +8,12 @@ import androidx.activity.viewModels
 import com.upb.littlepaw.loginviewmodel.LoginViewModel
 import com.upb.littlepaw.databinding.ActivityLoginBinding
 import com.upb.littlepaw.homescreen.HomeActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    val viewModel: LoginViewModel by viewModels()
+    val viewModel: LoginViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
 
              */
             if(viewModel.validate()) {
-                viewModel.loginUser(this, viewModel.email.value!!, viewModel.password.value!!, {
+                viewModel.loginUser(viewModel.email.value!!, viewModel.password.value!!, {
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                 }, { error ->

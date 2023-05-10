@@ -26,16 +26,20 @@ import com.upb.littlepaw.databinding.ActivityHomeBinding
 import com.upb.littlepaw.homescreen.adoption.AdoptionFragment
 import com.upb.littlepaw.homescreen.fragments.SideBarFragment
 import com.upb.littlepaw.utils.replaceFragment
+import kotlinx.coroutines.CoroutineScope
+import org.koin.androidx.viewmodel.ext.android.getViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
-    val viewModel: HomeViewModel by viewModels()
+    val viewModel: HomeViewModel by viewModel()
 
     private val sideBarFragment = SideBarFragment()
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

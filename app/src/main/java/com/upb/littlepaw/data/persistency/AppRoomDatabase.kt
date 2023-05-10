@@ -1,33 +1,22 @@
 package com.upb.littlepaw.data.persistency
 
 import android.content.Context
-import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.upb.littlepaw.homescreen.adoption.models.PetCard
 import com.upb.littlepaw.homescreen.adoption.models.PetGender
 import com.upb.littlepaw.homescreen.adoption.models.PetType
-import com.upb.littlepaw.homescreen.profile.models.User
 import com.upb.littlepaw.homescreen.profile.models.UserEntity
 
+class RoomPersistency(val context: Context) {
+    val db = Room.databaseBuilder(context, AppRoomDatabase::class.java, "RoomDb.db").build()
+}
 @Database(entities = [PetCard::class, UserEntity::class], version = 1)
 @TypeConverters(PetTypeConverters::class, PetGenderConverters::class)
-abstract class RoomPersistency:RoomDatabase() {
+abstract class AppRoomDatabase:RoomDatabase() {
     abstract fun PetsDao(): PetsDao
     abstract fun UsersDao(): UsersDao
-
-    companion object {
-        var instance: RoomPersistency? = null
-        fun getInstance(context: Context): RoomPersistency {
-            if (instance == null) {
-                instance =
-                    Room.databaseBuilder(context, RoomPersistency::class.java, "RoomDb.db").build()
-            }
-            return instance!!
-        }
-
-    }
 }
 
 class PetTypeConverters {

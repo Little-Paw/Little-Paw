@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class ChangePasswordViewModel: ViewModel() {
+class ChangePasswordViewModel(val usersRepository: UsersRepository): ViewModel() {
     val user = MutableLiveData<User>(User(MutableLiveData<String>(), MutableLiveData<String>(), MutableLiveData<String>(), MutableLiveData<String?>()))
 
     val oldPassword = MutableLiveData<String>()
@@ -30,7 +30,6 @@ class ChangePasswordViewModel: ViewModel() {
     val touchedRepeatNewPassword = MutableLiveData<Boolean>()
 
     val buttonEnabled = MutableLiveData<Boolean>()
-    val usersRepository = UsersRepository()
 
     init {
         setOldPassword("")
@@ -169,10 +168,10 @@ class ChangePasswordViewModel: ViewModel() {
         }
     }
 
-    fun updatePassword(context: Context, user: UserEntity, onSuccess: () -> Unit, onError:(error:String) -> Unit) {
+    fun updatePassword(user: UserEntity, onSuccess: () -> Unit, onError:(error:String) -> Unit) {
         viewModelScope.launch{
             flow{
-                usersRepository.updateUser(context, user)
+                usersRepository.updateUser(user)
                 emit(user)
             }.flowOn(Dispatchers.IO).onEach { onSuccess() }.catch { onError.invoke("An error has occurred") }.collect()
         }

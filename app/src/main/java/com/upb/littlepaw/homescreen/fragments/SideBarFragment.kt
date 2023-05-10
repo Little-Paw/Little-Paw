@@ -16,12 +16,13 @@ import com.upb.littlepaw.homescreen.HomeViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 
 class SideBarFragment : Fragment(R.layout.fragment_side_bar) {
     lateinit var binding: FragmentSideBarBinding
 
-    private val homeViewModel: HomeViewModel by activityViewModels()
+    private val homeViewModel: HomeViewModel by activityViewModel()
 
     companion object {
         const val TAG = "SideBarFragment"
@@ -39,7 +40,7 @@ class SideBarFragment : Fragment(R.layout.fragment_side_bar) {
         super.onViewCreated(view, savedInstanceState)
 
         CoroutineScope(Dispatchers.Main).launch {
-            homeViewModel.getUser(requireContext())
+            homeViewModel.getUser()
             binding.profileSideBarName.text = homeViewModel.user.value?.name
         }
 
