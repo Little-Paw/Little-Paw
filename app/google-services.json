@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "56702407331",
+    "project_id": "little-paw-f999b",
+    "storage_bucket": "little-paw-f999b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56702407331:android:0499319587ff5f017fa516",
+        "android_client_info": {
+          "package_name": "com.upb.littlepaw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56702407331-3ouv5bcbd340uj18fgdr21ovl6504eem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJhUA3s8Zm6-p1juKq1LBQ0n4SOTcwUHk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56702407331-3ouv5bcbd340uj18fgdr21ovl6504eem.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.upb.littlepaw.LoginActivity
 import com.upb.littlepaw.databinding.ActivityRegisterBinding
 import com.upb.littlepaw.homescreen.profile.models.User
 import com.upb.littlepaw.homescreen.profile.models.UserEntity
@@ -29,7 +33,9 @@ class RegisterActivity : AppCompatActivity() {
             println(registerViewModel.user.value?.password?.value?.toString())
             println(registerViewModel.repeatPassword.value?.toString())
             val user = UserEntity(registerViewModel.user.value!!)
-            registerViewModel.createUser(user, { },
+            registerViewModel.createUser(user, { Toast.makeText(this, "Usuario creado", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)},
                 {Toast.makeText(this, "Error creando usuario", Toast.LENGTH_SHORT).show()})
         }
 
