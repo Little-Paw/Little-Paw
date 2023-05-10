@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class AddPetViewModel(val petsRepository: PetsRepository): ViewModel() {
 
-    val pet = MutableLiveData(Pet("", "", "", "", PetGender.MALE, PetType.DOG, ByteArray(0)))
+    val pet = MutableLiveData(Pet("", 0, "", "", PetGender.MALE, PetType.DOG, ByteArray(0)))
     val petTypes = MutableLiveData<List<PetType>>(listOf(PetType.DOG, PetType.CAT,PetType.BUNNY,PetType.BIRD, PetType.REPTILE, PetType.OTHER))
 
     init {
