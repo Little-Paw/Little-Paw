@@ -1,0 +1,40 @@
+package com.upb.littlepaw.homescreen.animalscreen
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
+import com.upb.littlepaw.R
+import com.upb.littlepaw.databinding.FragmentAnimalScreenBinding
+import com.upb.littlepaw.homescreen.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
+
+
+class AnimalScreenFragment : Fragment() {
+
+    val args: AnimalScreenFragmentArgs by navArgs()
+    lateinit var binding:FragmentAnimalScreenBinding
+    private val homeViewModel: HomeViewModel by activityViewModel()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        binding = FragmentAnimalScreenBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.pet = args.petCard
+    }
+
+    override fun onResume() {
+        super.onResume()
+        homeViewModel.setStatusBarColor(R.color.white) //TODO: change to transparent
+    }
+
+}

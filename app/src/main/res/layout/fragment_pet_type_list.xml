@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".homescreen.adoption.fragments.PetTypeListFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pet_type_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingHorizontal="6dp"
+        android:clipToPadding="false"
+        android:layoutAnimation="@anim/pet_type_list_anim_layout"
+        app:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/pet_type_item" />
+
+</FrameLayout>

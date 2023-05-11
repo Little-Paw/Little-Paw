@@ -1,0 +1,25 @@
+{
+  "description": "",
+  "language": "es",
+  "shortDescription": "",
+  "examples": "",
+  "linkToDocs": "",
+  "displayName": "JoamyUPBBot",
+  "disableInteractionLogs": false,
+  "disableStackdriverLogs": true,
+  "defaultTimezone": "America/Barbados",
+  "isPrivate": true,
+  "mlMinConfidence": 0.3,
+  "supportedLanguages": [
+    "en"
+  ],
+  "enableOnePlatformApi": true,
+  "onePlatformApiVersion": "v2",
+  "secondaryKey": "aa2ad44a4112416d8fa4f9fe11ad9fb8",
+  "analyzeQueryTextSentiment": false,
+  "enabledKnowledgeBaseNames": [],
+  "knowledgeServiceConfidenceAdjustment": 0.0,
+  "dialogBuilderMode": false,
+  "baseActionPackagesUrl": "",
+  "enableSpellCorrection": false
+}

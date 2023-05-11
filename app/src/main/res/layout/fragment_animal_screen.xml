@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.upb.littlepaw.homescreen.adoption.models.PetGender"/>
+        <variable
+            name="pet"
+            type="com.upb.littlepaw.homescreen.adoption.models.PetCard" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/animalImageAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcUrl="@{pet.image}"
+        tools:src="@drawable/dog_placeholder"/>
+
+
+    <View
+        android:id="@+id/grayBoxAnimalScreen"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded_corners"
+        android:backgroundTint="#F3F3F3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/adoptButtonAnimalScreen"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Adoption"
+        app:cornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/favoriteButtonAnimalScreen"
+        app:layout_constraintTop_toTopOf="@+id/grayBoxAnimalScreen" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/favoriteButtonAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="0dp"
+        app:cornerRadius="16dp"
+        app:icon="@drawable/ic_favorite"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/adoptButtonAnimalScreen"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/grayBoxAnimalScreen"
+        app:layout_constraintStart_toStartOf="@+id/grayBoxAnimalScreen"
+        app:layout_constraintTop_toTopOf="@+id/grayBoxAnimalScreen" />
+
+
+    <FrameLayout
+        android:id="@+id/descriptionBoxAnimalScreen"
+        android:layout_width="350dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="-50dp"
+        android:background="@drawable/rounded_corners"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animalImageAnimalScreen" />
+
+    <TextView
+        android:id="@+id/animalNameAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:elevation="21dp"
+        android:fontFamily="@font/anybody"
+        android:text="@{pet.name}"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/descriptionBoxAnimalScreen"
+        app:layout_constraintTop_toTopOf="@+id/descriptionBoxAnimalScreen"
+        tools:text="Smile Doggy"/>
+
+    <TextView
+        android:id="@+id/animalBreedAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:elevation="21dp"
+        android:text="@{pet.breed}"
+        android:textColor="#BDBDBD"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/animalLocationAnimalScreen"
+        app:layout_constraintStart_toStartOf="@+id/descriptionBoxAnimalScreen"
+        app:layout_constraintTop_toBottomOf="@+id/animalNameAnimalScreen"
+        tools:text="Golden Retriever"/>
+
+    <TextView
+        android:id="@+id/animalLocationAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:elevation="21dp"
+        android:text="La Paz - Bolivia"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/descriptionBoxAnimalScreen"
+        app:layout_constraintStart_toEndOf="@+id/locationIconAnimalScreen" />
+
+    <ImageView
+        android:id="@+id/locationIconAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="21dp"
+        app:layout_constraintBottom_toBottomOf="@+id/descriptionBoxAnimalScreen"
+        app:layout_constraintStart_toStartOf="@+id/descriptionBoxAnimalScreen"
+        app:srcCompat="@drawable/ic_location"
+        app:tint="@color/primary" />
+
+    <ImageView
+        android:id="@+id/animalGenderAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:elevation="21dp"
+        app:layout_constraintEnd_toEndOf="@+id/descriptionBoxAnimalScreen"
+        app:layout_constraintTop_toTopOf="@+id/descriptionBoxAnimalScreen"
+        android:src="@{pet.gender == PetGender.MALE ? @drawable/ic_male : @drawable/ic_female_symbol}"
+        app:tint="@color/primary"
+        tools:src="@drawable/ic_male"/>
+
+    <TextView
+        android:id="@+id/animalAgeAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:elevation="21dp"
+        android:fontFamily="@font/anybody"
+        android:text="@{pet.age + ` years old`}"
+        android:textSize="10sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/animalLocationAnimalScreen"
+        app:layout_constraintEnd_toEndOf="@+id/descriptionBoxAnimalScreen"
+        app:layout_constraintTop_toBottomOf="@+id/animalGenderAnimalScreen"
+        tools:text="16 years old"/>
+
+    <ImageView
+        android:id="@+id/ownerProfilePicAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/animalDescriptionAnimalScreen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionBoxAnimalScreen"
+        app:srcCompat="@drawable/ic_owner_photo" />
+
+    <TextView
+        android:id="@+id/ownerFullNameAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="Dalas Review"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/animalDescriptionAnimalScreen"
+        app:layout_constraintStart_toEndOf="@+id/ownerProfilePicAnimalScreen"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionBoxAnimalScreen" />
+
+    <TextView
+        android:id="@+id/ownerAttributeAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="Owner"
+        android:textSize="10sp"
+        android:textColor="#BDBDBD"
+        app:layout_constraintStart_toEndOf="@+id/ownerProfilePicAnimalScreen"
+        app:layout_constraintTop_toBottomOf="@+id/ownerFullNameAnimalScreen" />
+
+    <TextView
+        android:id="@+id/dateOfAdoptionPostAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="March 3, 2023"
+        android:textSize="10sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/animalDescriptionAnimalScreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionBoxAnimalScreen" />
+
+    <TextView
+        android:id="@+id/animalDescriptionAnimalScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Smile is a lovable mixed breed dog looking for a permanent place to call home. Despite a rough start in life,  he has a cheerful personality and loves attention from humans. He's great with people and other dogs, and would make a wonderful companion for a loving and patient family."
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/grayBoxAnimalScreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ownerProfilePicAnimalScreen" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

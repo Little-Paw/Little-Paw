@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/adoptionFragment">
+
+    <fragment
+        android:id="@+id/addPetFragment"
+        android:name="com.upb.littlepaw.homescreen.addpet.fragments.AddPetFragment"
+        android:label="AddPetFragment"
+        tools:layout="@layout/fragment_add_pet">
+        <action
+            android:id="@+id/action_addPetFragment_to_adoptionFragment"
+            app:destination="@id/adoptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adoptionFragment"
+        android:name="com.upb.littlepaw.homescreen.adoption.AdoptionFragment"
+        android:label="fragment_adoption"
+        tools:layout="@layout/fragment_adoption" >
+        <action
+            android:id="@+id/action_adoptionFragment_to_animalScreenFragment"
+            app:destination="@id/animalScreenFragment" />
+        <action
+            android:id="@+id/action_adoptionFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatbotFragment"
+        android:name="com.upb.littlepaw.ChatbotFragment"
+        android:label="fragment_chabot"
+        tools:layout="@layout/fragment_chabot" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.upb.littlepaw.homescreen.profile.fragments.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/animalScreenFragment"
+        android:name="com.upb.littlepaw.homescreen.animalscreen.AnimalScreenFragment"
+        android:label="AnimalScreenFragment"
+        tools:layout="@layout/fragment_animal_screen">
+        <argument
+            android:name="petCard"
+            app:argType="com.upb.littlepaw.homescreen.adoption.models.PetCard" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.upb.littlepaw.changepassscreen.ChangePasswordFragment"
+        android:label="ChangePasswordFragment"
+        tools:layout="@layout/fragment_change_password" >
+        <argument
+            android:name="user"
+            app:argType="com.upb.littlepaw.homescreen.profile.models.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.upb.littlepaw.homescreen.favorites.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_animalScreenFragment"
+            app:destination="@id/animalScreenFragment" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+
+</navigation>

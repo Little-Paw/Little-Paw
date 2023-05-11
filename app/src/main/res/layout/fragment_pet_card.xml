@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:orientation="horizontal">
+
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.Material3.CardView.Elevated"
+        android:id="@+id/cardImageView"
+        app:layout_constraintDimensionRatio="10:12"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardView"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginVertical="15dp"
+        app:layout_constraintHorizontal_weight="4"
+        android:clickable="true"
+        android:focusable="true">
+
+
+        <ImageView
+            android:id="@+id/pet_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/dog_placeholder"
+            android:contentDescription="@string/pet_image_in_card_item" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.Material3.CardView.Elevated"
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="20dp"
+        android:layout_marginEnd="16dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialCardView.Cut"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintHorizontal_weight="5"
+        app:layout_constraintBottom_toBottomOf="@+id/cardImageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardImageView"
+        app:layout_constraintTop_toTopOf="@+id/cardImageView"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="0dp">
+
+            <TextView
+                android:id="@+id/name_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/anybody_bold"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/breed_subtitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/breed_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/anybody_bold"
+                android:paddingBottom="5dp"
+                android:text="Subtitle"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toTopOf="@+id/age_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_title" />
+
+            <TextView
+                android:id="@+id/age_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/anybody_bold"
+                android:text="Age"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/distance_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/breed_subtitle" />
+
+            <TextView
+                android:id="@+id/distance_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-17dp"
+                android:fontFamily="@font/anybody"
+                android:gravity="center_vertical"
+                android:text="Distance"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="#BDBDBD"
+                android:textSize="16sp"
+                app:drawableLeftCompat="@drawable/ic_location"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                app:drawableTint="@color/primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/age_text" />
+
+            <ImageView
+                android:id="@+id/gender_icon_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:paddingEnd="3dp"
+                android:contentDescription="Gender icon image"
+                android:src="@drawable/ic_male_symbol"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
